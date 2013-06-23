@@ -279,4 +279,4 @@ Get the complete documentation at: http://www.clickfraud-monitoring.com/
 * First revision
 
 == Official Site ==
-* http://www.clickfraud-monitoring.com>>>>>>> .r730296
+* http://www.clickfraud-monitoring.com

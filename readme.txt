@@ -1,7 +1,6 @@
-<<<<<<< .mine
 === AdSense Click-Fraud Monitoring ===
 Contributors: ReneHermi
-Donate link: http://www.clickfraud-monitoring.vom
+Donate link: http://www.clickfraud-monitoring.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Click Fraud Monitoring, AdSense click fraud monitoring, AdSense, Klickbetrug, invalid klicks, ungültige klicks, click bomb, click bombing, clickbomb, ad, ads, advertisement, click protection, click protect, clickfraud, click-fraud, PPC

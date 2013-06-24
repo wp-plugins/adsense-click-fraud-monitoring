@@ -3,7 +3,7 @@ Contributors: ReneHermi
 Donate link: http://www.clickfraud-monitoring.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: Click Fraud Monitoring, AdSense click fraud monitoring, AdSense, Klickbetrug, invalid klicks, ungültige klicks, click bomb, click bombing, clickbomb, ad, ads, advertisement, click protection, click protect, clickfraud, click-fraud, PPC
+Tags: AdSense click fraud monitoring, AdSense, Ajax, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.5.1
 Stable tag: 1.2

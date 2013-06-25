@@ -16,8 +16,8 @@ Minimize the risk to be banned and excluded from your AdSense account due to mal
 
  ## This plugin is in active development and will be updated on a regular basis - Please do not rate negative before i tried my best to solve your issue. Thanks buddy! ##
 
-Click fraud monitor for Google AdSense and every other pay per click advertising vendor. 
-Minimize the risk to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
+Official Website for docs, service and support:
+http://www.clickfraud-monitoring.com 
 
 = Why i need AdSense Click Fraud Monitoring? =
 

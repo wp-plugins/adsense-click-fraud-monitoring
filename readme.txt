@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: AdSense click fraud monitoring, AdSense, Ajax, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.5.1
-Stable tag: 1.2
+Stable tag: 1.3
 
 Click-Fraud monitor for Google AdSense and other pay per click vendors. 
 Minimize the risk to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.

@@ -14,10 +14,13 @@ Minimize the risk to be banned and excluded from your AdSense account due to mal
 
 == Description ==
 
- ## This plugin is in active development and will be updated on a regular basis - Please do not rate negative before i tried my best to solve your issue. Thanks buddy! ##
+This plugin is in active development and will be updated on a regular basis - Please do not rate negative before i tried my best to solve your issue. Thanks buddy!
 
-Official Website for docs, service and support:
-http://www.clickfraud-monitoring.com 
+Official Website for docs, support:
+http://www.clickfraud-monitoring.com
+
+Get the premium version with email notification at:
+http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 
 = Why i need AdSense Click Fraud Monitoring? =
 

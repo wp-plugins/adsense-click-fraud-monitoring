@@ -1,4 +1,0 @@
-/*
-Only there for registering ajax
-Return null
-*/

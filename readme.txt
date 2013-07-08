@@ -17,9 +17,10 @@ Click-Fraud Monitor for Google AdSense and other PPC vendors. Prevents to be ban
 == Description ==
 
 Get the premium version with email notification at:
+
 http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 
-Official Website for docs and support:
+Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
 
 This plugin is in active development and will be updated on a regular basis - Please do not rate negative before i tried my best to solve your issue. Thanks buddy!

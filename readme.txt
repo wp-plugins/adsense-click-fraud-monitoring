@@ -1,4 +1,4 @@
-=== AdSense Click-Fraud Monitoring ===
+=== AdSense Click-Fraud Monitoring Plugin ===
 Contributors: ReneHermi
 Donate link: http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 License: GPLv2 or later
@@ -8,7 +8,7 @@ Requires at least: 3.1+
 Tested up to: 3.5.2
 Stable tag: 1.4
 
-Click-Fraud Monitor for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on ads on your website.
+Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
@@ -16,7 +16,7 @@ Click-Fraud Monitor for Google AdSense and other PPC vendors. Prevents to be ban
 
 == Description ==
 
-Get the premium version with email notification at:
+Get the premium version and get more features:
 
 http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 
@@ -25,7 +25,7 @@ http://www.clickfraud-monitoring.com
 
 This plugin is in active development and will be updated on a regular basis - Please do not rate negative before i tried my best to solve your issue. Thanks buddy!
 
-= Why i need AdSense Click Fraud Monitoring? =
+= Why i need AdSense Click Fraud Monitoring Plugin? =
 
 * Prevent malicious clicks by bots on your Ads
 * Prevent malicious clicks by human user on you Ads
@@ -154,3 +154,4 @@ Get the complete documentation at: http://www.clickfraud-monitoring.com/
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com
+

@@ -15,7 +15,7 @@ function cfmonitor_admin_menu() {
 }
 
 function cfmonitor_load_menu() {
-	$current_theme = wp_get_theme();
+	//$current_theme = wp_get_theme();
 	$pluginpath = CFMONITOR_PLUGIN_INSTALL_FILE;
 	$active_plugin = get_option('active_plugins');
 	

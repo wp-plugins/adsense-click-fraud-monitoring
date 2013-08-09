@@ -206,7 +206,7 @@ function cfmonitor_conf() {
                                                  <div class="rm_field">
                                                  <input name="cfmonitor_email" class="required email" id="cfmonitor_email" type="email" value="<?php if (get_option('cfmonitor_email') == '' || get_option('cfmonitor_email') == null) {echo get_option('admin_email');} else { echo get_option('cfmonitor_email');} ?>" />
                                                  </div>
-                                                    <div class="rm_desc"><small>(<?php _e('Sent a notification for any blocked IP to this email'); ?>) </small>
+                                                    <div class="rm_desc"><small>(<?php _e('Sent a notification for any blocked IP to this email - <strong>Only working in the premium version! Order it at <a href="mailto:admin@x-simulator.de">admin@x-simulator.de</a> for only 10$ and get also a premium support via e-mail.</strong>)'); ?>) </small>
                                                  </div>
                                                  </div>
                                             <div class="rm_input rm_text">

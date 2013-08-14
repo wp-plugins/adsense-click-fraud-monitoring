@@ -50,11 +50,22 @@ function createtable_clickfraud()
 }
         register_activation_hook(__FILE__,'createtable_clickfraud');
 
+function cfenqueue_admin_scripts() {
+		if( 'plugins.php?page=cfmonitor-config' != $page )
+        {
+             return;
+        }
+        wp_enqueue_style( 'prefix-style', plugins_url('style_admin.css', __FILE__) );
+	    wp_register_style( 'cfmonitor.css', CFMONITOR_PLUGIN_URL . 'cfmonitor.css', array(), '1.0.0.1' );
+        wp_enqueue_style('cfmonitor.css');
+}
+add_action( 'admin_enqueue_scripts', 'cfenqueue_admin_scripts' );
+
+		
 function cfenqueue_plugin_scripts() {
     global $wpdb;
 	wp_enqueue_script( 'jquery' );
-        wp_register_style( 'cfmonitor.css', CFMONITOR_PLUGIN_URL . 'cfmonitor.css', array(), '1.0.0.1' );
-        wp_enqueue_style('cfmonitor.css');
+
 	//$clickmonitor = new clickfraudmonitor($wpdb);
         $clickmonitor = new clickfraudmonitor();
 	if (!is_admin()) {

@@ -33,6 +33,7 @@ This plugin is in active development and will be updated on a regular basis - Pl
 * Prevent unintended clicks by your own
 * New: Block your own IP
 * New: Use custom name for your ad block class
+* New: Blocks a comma separated list of specific IP´s including detection of your own IP
 
 In easy words, e.g. Google AdSense: Google takes care that every click on any AdSense advertising is done by a real human visitor. Automatic clicks by crawl bots or a lot of automated or manual processed clicks (a so-called Clickbomb) can lead to a complete and permanent exclusion from the google AdSense service. All your earnings are lost and it is very hard to get back the access to your account. (In most cases impossible)
 The motivation behind such automatic clicks is very different. Maybe some competitior wants to harm you or a technical leads to multiple clicks by a human user. They all have in common that you as the AdSense account owner are responsible for any click fraud. You recognize unusual clicks when your page CTR is 1 - 3 % averaged and than it jumps up to 5, 10 or even more. 

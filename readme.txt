@@ -16,9 +16,8 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 
 == Description ==
 
-Get the premium version and get more features:
-
-http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
+Get the premium version and with more features like email notification for only 12$:
+http://demo.clickfraud-monitoring.com/
 
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com

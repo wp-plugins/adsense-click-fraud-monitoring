@@ -85,11 +85,14 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 == Changelog ==
 
-= 1.4= 
+= 1.5 = 
+* Some fixes to prevent js breaking with some third party themes *
+
+= 1.4 = 
 * Fix
 
 = 1.3 =
-*Fix
+* Fix
 
 = 1.2 =
 * Some coding improvements
@@ -144,7 +147,7 @@ Get the complete documentation at: http://www.clickfraud-monitoring.com/
 = 1.5 = 
 * Some fixes to prevent js breaking with some third party themes *
 
-= 1.4 = 
+= 1.4 =
 * Fix
 
 = 1.3 =

@@ -3,7 +3,7 @@ Contributors: ReneHermi
 Donate link: http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: AdSense click fraud monitoring, AdSense, Ajax, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
+Tags: AdSense click fraud monitoring, AdSense, AdSense plugin, Ajax, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.5.2
 Stable tag: 1.5
@@ -143,26 +143,6 @@ It´s working with any pay per click ad vendor. It´s not focused on AdSense.
 Get the complete documentation at: http://www.clickfraud-monitoring.com/ 
 
 == Upgrade Notice ==
-
-= 1.5 = 
-* Some fixes to prevent js breaking with some third party themes *
-
-= 1.4 =
-* Fix
-
-= 1.3 =
-* Fix
-
-= 1.2 =
-* Fix
-
-= 1.1 =
-* New: Block own IP
-* New: Use custom element classes. E.g. div='myad1'
-* Fixed Google AdSense iframe issues
-
-= 1.0 =
-* First revision
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com

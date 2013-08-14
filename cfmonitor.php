@@ -4,7 +4,7 @@
  	Author: Rene Hermenau
         Author URI: https://plus.google.com/u/0/105229046305078704903/posts
         Plugin URI: http://www.clickfraud-monitoring.com
- 	Version: 1.5
+ 	Version: 1.6
  	Description: <strong>Monitors and prevents malicious clicks on Adsense ads.</strong> Important to prevent a exclusion from your Google Adsense account. <strong>How to use:</strong> Activate the Plugin -> Go to <a href="./plugins.php?page=cfmonitor-config">settings</a>, Save settings and wrap a div container around your Adsense code. For default use the class:<strong> div= 'cfmonitor' </strong><br><a href="http://www.clickfraud-monitoring.com/" target="_blank">Documentation</a> | <a href="http://demo.clickfraud-monitoring.com/" target="_blank">Demo site</a>
 */
 
@@ -50,6 +50,22 @@ function createtable_clickfraud()
 }
         register_activation_hook(__FILE__,'createtable_clickfraud');
 
+/* Strips the comma separated list of IP adresses */		
+function cf_should_block_for_myip_option($client_ip) {
+    $option_value = get_option('cfmonitor_myip');
+
+    if (strpos($option_value, ',') !== false) {
+        $ips = explode(',', $option_value);
+        foreach ($ips as $ip) {
+            if (trim($ip) === $client_ip)
+                return true;
+        }
+
+        return false;
+    }
+    return $option_value === $client_ip;
+}		
+		
 function cfenqueue_admin_scripts() {
 		if( 'plugins.php?page=cfmonitor-config' != $page )
         {
@@ -73,7 +89,7 @@ function cfenqueue_plugin_scripts() {
                
                 $path = CFMONITOR_PLUGIN_URL.'clickupdate.php';
 		$clientdata = $clickmonitor->clientdetail($path);
-		if ($clientdata['isblockedcount'] >= $clientdata['clickcount'] || get_option('cfmonitor_noads') === 'true' || get_option('cfmonitor_myip') === $clientdata['client_ip'])  {
+		if ($clientdata['isblockedcount'] >= $clientdata['clickcount'] || get_option('cfmonitor_noads') === 'true' || cf_should_block_for_myip_option($clientdata['client_ip']))
 			wp_enqueue_script('click-bomb-hidediv', CFMONITOR_PLUGIN_URL. 'js/hideads_min.js');
                         //echo "VisitcountA" . $clientdata['isblockedcount'] . "clickcount" . $clientdata['clickcount'];
                 } else {
@@ -83,7 +99,7 @@ function cfenqueue_plugin_scripts() {
                 //$thisarray = $clickmonitor->checkclient();
                 //echo "CheckClient: " . $thisarray[0] . "Day diff are:" . $thisarray[1] . "Day span is " . $thisarray[2]; //for testing
 	}	
-}
+
 add_action('wp_enqueue_scripts','cfenqueue_plugin_scripts');
 
 //delete custom table when deactivating plugin

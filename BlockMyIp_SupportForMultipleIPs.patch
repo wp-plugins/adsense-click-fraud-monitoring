@@ -1,0 +1,78 @@
+Index: admin.php
+===================================================================
+--- admin.php	(revision 756117)
++++ admin.php	(working copy)
+@@ -239,7 +239,7 @@
+                                                  <input name="cfmonitor_myip" class="text" id="cfmonitor_myip" type="text" value="<?php if (get_option('cfmonitor_myip') == '' || get_option('cfmonitor_myip') == null) {echo '';} else { echo get_option('cfmonitor_myip');} ?>" />
+                                                  <br><a href="javascript:void(0)" id="clickgetmyip">Get my IP address</a>
+                                                  </div>
+-                                                 <div class="rm_desc"><small>(<?php _e('Fill in your IP address to block any ads on your site. Useful to prevent unintended clicks by yourself or your teammates. Leave empty when you do not want to block yourself.'); ?>) </small></div>
++                                                 <div class="rm_desc"><small>(<?php _e('Fill in your IP address to block any ads on your site. Useful to prevent unintended clicks by yourself or your teammates. Leave empty when you do not want to block yourself. You may also include a list of IP addresses by separating them with commas (ie: 111.222.33.44, 55.22.77.888)'); ?>) </small></div>
+                                                     
+                                                  </div>
+                                                  <!--   <div class="rm_input rm_text">
+Index: cfmonitor.php
+===================================================================
+--- cfmonitor.php	(revision 756117)
++++ cfmonitor.php	(working copy)
+@@ -50,11 +50,25 @@
+ }
+         register_activation_hook(__FILE__,'createtable_clickfraud');
+ 
++function cf_should_block_for_myip_option($client_ip) {
++    $option_value = get_option('cfmonitor_myip');
++
++    if (strpos($option_value, ',') !== false) {
++        $ips = explode(',', $option_value);
++        foreach ($ips as $ip) {
++            if (trim($ip) === $client_ip)
++                return true;
++        }
++
++        return false;
++    }
++
++    return $option_value === $client_ip;
++}
++
+ function cfenqueue_plugin_scripts() {
+     global $wpdb;
+ 	wp_enqueue_script( 'jquery' );
+-        wp_register_style( 'cfmonitor.css', CFMONITOR_PLUGIN_URL . 'cfmonitor.css', array(), '1.0.0.1' );
+-        wp_enqueue_style('cfmonitor.css');
+ 	//$clickmonitor = new clickfraudmonitor($wpdb);
+         $clickmonitor = new clickfraudmonitor();
+ 	if (!is_admin()) {
+@@ -62,7 +76,7 @@
+                
+                 $path = CFMONITOR_PLUGIN_URL.'clickupdate.php';
+ 		$clientdata = $clickmonitor->clientdetail($path);
+-		if ($clientdata['isblockedcount'] >= $clientdata['clickcount'] || get_option('cfmonitor_noads') === 'true' || get_option('cfmonitor_myip') === $clientdata['client_ip'])  {
++		if ($clientdata['isblockedcount'] >= $clientdata['clickcount'] || get_option('cfmonitor_noads') === 'true' || cf_should_block_for_myip_option($clientdata['client_ip']))  {
+ 			
+ 			wp_enqueue_script('click-bomb-hidediv', CFMONITOR_PLUGIN_URL. 'js/hideads.js');
+                         //echo "VisitcountA" . $clientdata['isblockedcount'] . "clickcount" . $clientdata['clickcount'];
+Index: js/form_validate_script.js
+===================================================================
+--- js/form_validate_script.js	(revision 756117)
++++ js/form_validate_script.js	(working copy)
+@@ -27,7 +27,17 @@
+         });
+         
+         jQuery("#clickgetmyip").click(function(){
+-            jQuery("#cfmonitor_myip").val(cfclientip);
++            var currentVal = jQuery("#cfmonitor_myip").val();
++
++            if (!currentVal)
++                currentVal = '';
++            
++            if (currentVal.indexOf(cfclientip) >= 0)
++                return;
++
++            currentVal += (currentVal.length > 0 ? ', ' : '') + cfclientip;
++
++            jQuery("#cfmonitor_myip").val(currentVal);
+         });
+ 
+ });
+\ No newline at end of file

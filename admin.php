@@ -239,7 +239,7 @@ function cfmonitor_conf() {
                                                  <input name="cfmonitor_myip" class="text" id="cfmonitor_myip" type="text" value="<?php if (get_option('cfmonitor_myip') == '' || get_option('cfmonitor_myip') == null) {echo '';} else { echo get_option('cfmonitor_myip');} ?>" />
                                                  <br><a href="javascript:void(0)" id="clickgetmyip">Get my IP address</a>
                                                  </div>
-                                                 <div class="rm_desc"><small>(<?php _e('Fill in your IP address to block any ads on your site. Useful to prevent unintended clicks by yourself or your teammates. Leave empty when you do not want to block yourself.'); ?>) </small></div>
+                                                 <div class="rm_desc"><small>(<?php _e('Fill in your IP address to block any ads on your site. Useful to prevent unintended clicks by yourself or your teammates. Leave empty when you do not want to block yourself. You may also include a list of IP addresses by separating them with commas (ie: 111.222.33.44, 55.22.77.888)'); ?>) </small></div>
                                                     
                                                  </div>
                                                  <!--   <div class="rm_input rm_text">

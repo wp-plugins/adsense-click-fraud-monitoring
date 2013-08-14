@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.5.2
-Stable tag: 1.5
+Stable tag: 1.6
 
 Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
 
@@ -31,7 +31,7 @@ This plugin is in active development and will be updated on a regular basis - Pl
 * Prevent malicious clicks by human user on you Ads
 * Prevent clicks by friends on your Ads who want to “help” you.
 * Prevent unintended clicks by your own
-* New: Block your own IP
+* New: Blocks a list of specific IP´s including detection of your own IP
 * New: Use custom name for your ad block class
 
 In easy words, e.g. Google AdSense: Google takes care that every click on any AdSense advertising is done by a real human visitor. Automatic clicks by crawl bots or a lot of automated or manual processed clicks (a so-called Clickbomb) can lead to a complete and permanent exclusion from the google AdSense service. All your earnings are lost and it is very hard to get back the access to your account. (In most cases impossible)
@@ -84,6 +84,9 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 3. screenshot-4.png
 
 == Changelog ==
+
+= 1.6 =
+* New: Blocks a list of specific IP´s including detection of your own IP
 
 = 1.5 = 
 * Some fixes to prevent js breaking with some third party themes *

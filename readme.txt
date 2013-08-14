@@ -85,11 +85,16 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 == Changelog ==
 
+= 1.5 = 
+* Some fixes to prevent js breaking with some third party themes *
+* Compatible with WP 3.6
+* Minified JS scripts for better performance
+
 = 1.4= 
 * Fix
 
 = 1.3 =
-*Fix
+* Fix
 
 = 1.2 =
 * Some coding improvements
@@ -139,27 +144,6 @@ It´s working with any pay per click ad vendor. It´s not focused on AdSense.
 
 Get the complete documentation at: http://www.clickfraud-monitoring.com/ 
 
-== Upgrade Notice ==
-
-= 1.5 = 
-* Some fixes to prevent js breaking with some third party themes *
-
-= 1.4= 
-* Fix
-
-= 1.3 =
-* Fix
-
-= 1.2 =
-* Fix
-
-= 1.1 =
-* New: Block own IP
-* New: Use custom element classes. E.g. div='myad1'
-* Fixed Google AdSense iframe issues
-
-= 1.0 =
-* First revision
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com

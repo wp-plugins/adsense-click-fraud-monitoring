@@ -3,10 +3,10 @@ Contributors: ReneHermi
 Donate link: http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: AdSense click fraud monitoring, AdSense, AdSense plugin, Ajax, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
+Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.5.2
-Stable tag: 1.6
+Stable tag: 1.7
 
 Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
 
@@ -19,6 +19,10 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 Get the premium version and with more features like email notification for only 12$:
 http://demo.clickfraud-monitoring.com/
 
+10 Percent discount with Coupon Code: <strong>10PERCENT</strong>
+(Only valid until 19th August.)
+
+
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
 
@@ -30,7 +34,7 @@ This plugin is in active development and will be updated on a regular basis - Pl
 * Prevent malicious clicks by human user on you Ads
 * Prevent clicks by friends on your Ads who want to “help” you.
 * Prevent unintended clicks by your own
-* New: Block your own IP
+* New: Blocks a list of specific IP´s including detection of your own IP
 * New: Use custom name for your ad block class
 * New: Blocks a comma separated list of specific IP´s including detection of your own IP
 
@@ -85,13 +89,18 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 == Changelog ==
 
-= 1.6 = 
-* New: Blocks a comma separated list of specific IP´s including detection of your own IP
+= 1.7 =
+* Fix: eventPrevent not working in IE
+
+= 1.6 =
+* New: Blocks a list of specific IP´s including detection of your own IP
 
 = 1.5 = 
 * Some fixes to prevent js breaking with some third party themes *
+* Compatible with WP 3.6
+* Minified JS scripts for better performance
 
-= 1.4 = 
+= 1.4= 
 * Fix
 
 = 1.3 =
@@ -145,7 +154,6 @@ It´s working with any pay per click ad vendor. It´s not focused on AdSense.
 
 Get the complete documentation at: http://www.clickfraud-monitoring.com/ 
 
-== Upgrade Notice ==
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com

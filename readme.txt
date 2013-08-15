@@ -19,6 +19,10 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 Get the premium version and with more features like email notification for only 12$:
 http://demo.clickfraud-monitoring.com/
 
+10 Percent discount with COUPON CODE: 10PERCENT
+(Only valid until 19th August.)
+
+
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
 

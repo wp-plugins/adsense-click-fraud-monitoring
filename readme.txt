@@ -22,6 +22,9 @@ http://demo.clickfraud-monitoring.com/
 10 Percent discount with Coupon Code: <strong>10PERCENT</strong>
 (Only valid until 19th August.)
 
+Planned premium features: AdSense click stats including IP, URL of the clicked ad and size of the ad.
+(Will be realized if there are a minimum of 5 user who want it:
+http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907)
 
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
@@ -76,6 +79,9 @@ Google is pretty good to recognize a few mistaken clicks but a larger attack sho
 
 In easy words: Google takes care that every click on any AdSense advertising is done by a real human visitor. Automatic clicks by crawl bots or a lot of automated or manual processed clicks (a so-called Clickbomb) can lead to a complete and permanent exclusion from the Google AdSense service. All your earnings are lost and it is very hard to get back the access to your account. (In most cases impossible) The motivation behind such automatic clicks is very different. Maybe some competitor wants to harm you or a technical leads to multiple clicks by a human user. They all have in common that you as the AdSense account owner are responsible for any click fraud. You recognize unusual clicks when your page CTR is 1 – 3 % averaged and than it jumps up to 5, 10 or even more.
 
+= Thanks and credit =
+Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
+
 == Installation ==
 1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
@@ -94,13 +100,14 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 = 1.6 =
 * New: Blocks a list of specific IP´s including detection of your own IP
+  Thanks to user Haval Aloussi for his changes http://profiles.wordpress.org/hoovilation/
 
 = 1.5 = 
 * Some fixes to prevent js breaking with some third party themes *
 * Compatible with WP 3.6
 * Minified JS scripts for better performance
 
-= 1.4= 
+= 1.4 = 
 * Fix
 
 = 1.3 =

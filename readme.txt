@@ -8,7 +8,7 @@ Requires at least: 3.1+
 Tested up to: 3.6
 Stable tag: 1.7
 
-Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
+Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.

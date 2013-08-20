@@ -22,6 +22,9 @@ http://demo.clickfraud-monitoring.com/
 10 Percent discount with Coupon Code: <strong>10PERCENT</strong>
 (Only valid until 19th August.)
 
+Planned premium features: AdSense click stats including IP, URL of the clicked ad and size of the ad.
+(Will be realized if there are a minimum of 5 user who want it:
+http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907)
 
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com

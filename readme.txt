@@ -8,7 +8,7 @@ Requires at least: 3.1+
 Tested up to: 3.6
 Stable tag: 1.7
 
-Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website.
+Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
@@ -16,11 +16,8 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 
 == Description ==
 
-Get the premium version and with more features like email notification for only 12$:
+Get the premium version with email notification for only 12$:
 http://demo.clickfraud-monitoring.com/
-
-10 Percent discount with Coupon Code: <strong>10PERCENT</strong>
-(Only valid until 19th August.)
 
 Planned premium features: AdSense click stats including IP, URL of the clicked ad and size of the ad.
 (Will be realized if there are a minimum of 5 user who want it:
@@ -164,4 +161,3 @@ Get the complete documentation at: http://www.clickfraud-monitoring.com/
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com
-

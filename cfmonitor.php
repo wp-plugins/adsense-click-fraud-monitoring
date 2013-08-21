@@ -4,7 +4,7 @@
  	Author: Rene Hermenau
         Author URI: https://plus.google.com/u/0/105229046305078704903/posts
         Plugin URI: http://www.clickfraud-monitoring.com
- 	Version: 1.6
+ 	Version: 1.7
  	Description: <strong>Monitors and prevents malicious clicks on Adsense ads.</strong> Important to prevent a exclusion from your Google Adsense account. <strong>How to use:</strong> Activate the Plugin -> Go to <a href="./plugins.php?page=cfmonitor-config">settings</a>, Save settings and wrap a div container around your Adsense code. For default use the class:<strong> div= 'cfmonitor' </strong><br><a href="http://www.clickfraud-monitoring.com/" target="_blank">Documentation</a> | <a href="http://demo.clickfraud-monitoring.com/" target="_blank">Demo site</a>
 */
 
@@ -67,7 +67,7 @@ function cf_should_block_for_myip_option($client_ip) {
 }		
 		
 function cfenqueue_admin_scripts() {
-		if( 'plugins.php?page=cfmonitor-config' != $page )
+		if( 'plugins.php?page=cfmonitor-config' != site_url() )
         {
              return;
         }

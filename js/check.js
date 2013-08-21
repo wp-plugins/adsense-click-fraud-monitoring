@@ -265,7 +265,7 @@ function countajaxclicks()
 // UPDATE ELEMENTS
         function updateElements() {
             jq.cfmonitor.elements = [];
-            console.log("UpdateElements");
+            //console.log("UpdateElements");
             alert ("update elements");
             // DEFAULT ITEMS
             if (cfmonitor_options.defaultElements.length > 1) saveElements(cfmonitor_options.defaultElements);

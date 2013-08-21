@@ -8,20 +8,34 @@ Requires at least: 3.1+
 Tested up to: 3.6
 Stable tag: 1.7
 
-Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
+Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
 
 
-== Description ==
+== Description == 
 
-Get the premium version with email notification for only 12$:
-http://demo.clickfraud-monitoring.com/
+Blocks visitor from seeing your ads when they click multiple times on them.<br>
+- Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 
-Planned premium features: AdSense click stats including IP, URL of the clicked ad and size of the ad.
-(Will be realized if there are a minimum of 5 user who want it:
-http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907)
+<h3> Links </h3>
+
+[DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
+[More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
+
+<h3>Extended Version</h3>
+
+You can purchase an extended version of this plugin and support me<br>
+Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+
+</p>
+</p>
+<br>
+
+Premium features in developing: AdSense click stats including IP, URL of the clicked ad and size of the ad.
+(Will be realized if there are a minimum of 5 user who want it: 
+[Rate for it](http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907 "Suggest new features")
 
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
@@ -161,4 +175,3 @@ Get the complete documentation at: http://www.clickfraud-monitoring.com/
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com
-

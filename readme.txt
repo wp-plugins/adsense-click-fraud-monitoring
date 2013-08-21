@@ -5,23 +5,37 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
-Tested up to: 3.5.2
+Tested up to: 3.6
 Stable tag: 1.6
 
-Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website ads.
+Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
 
 
-== Description ==
+== Description == 
 
-Get the premium version and with more features like email notification for only 12$:
-http://demo.clickfraud-monitoring.com/
+Blocks visitor from seeing your ads when they click multiple times on them.<br>
+- Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 
-10 Percent discount with Coupon Code: <strong>10PERCENT</strong>
-(Only valid until 19th August.)
+<h3> Links </h3>
 
+[DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
+[More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
+
+<h3>Extended Version</h3>
+
+You can purchase an extended version of this plugin and support me<br>
+Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+
+</p>
+</p>
+<br>
+
+Premium features in developing: AdSense click stats including IP, URL of the clicked ad and size of the ad.
+(Will be realized if there are a minimum of 5 user who want it: 
+[Rate for it](http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907 "Suggest new features")
 
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
@@ -76,6 +90,9 @@ Google is pretty good to recognize a few mistaken clicks but a larger attack sho
 
 In easy words: Google takes care that every click on any AdSense advertising is done by a real human visitor. Automatic clicks by crawl bots or a lot of automated or manual processed clicks (a so-called Clickbomb) can lead to a complete and permanent exclusion from the Google AdSense service. All your earnings are lost and it is very hard to get back the access to your account. (In most cases impossible) The motivation behind such automatic clicks is very different. Maybe some competitor wants to harm you or a technical leads to multiple clicks by a human user. They all have in common that you as the AdSense account owner are responsible for any click fraud. You recognize unusual clicks when your page CTR is 1 – 3 % averaged and than it jumps up to 5, 10 or even more.
 
+= Thanks and credit =
+Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
+
 == Installation ==
 1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
@@ -89,15 +106,19 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 == Changelog ==
 
+= 1.7 =
+* Fix: eventPrevent not working in IE
+
 = 1.6 =
 * New: Blocks a list of specific IP´s including detection of your own IP
+  Thanks to user Haval Aloussi for his changes http://profiles.wordpress.org/hoovilation/
 
 = 1.5 = 
 * Some fixes to prevent js breaking with some third party themes *
 * Compatible with WP 3.6
 * Minified JS scripts for better performance
 
-= 1.4= 
+= 1.4 = 
 * Fix
 
 = 1.3 =
@@ -154,4 +175,3 @@ Get the complete documentation at: http://www.clickfraud-monitoring.com/
 
 == Official Site ==
 * http://www.clickfraud-monitoring.com
-

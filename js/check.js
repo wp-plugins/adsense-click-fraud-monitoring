@@ -28,7 +28,7 @@ var wrapperclass = "." + customclass;
 
 
 jq.cfmonitor = {
-        options: {
+        cfmonitor_options: {
             maxClicks            : 2, // Maximum clicks per client
             countDown            : 5, // Seconds to check if client can still see the ads
             defaultElements      : wrapperclass, // guard ads in the container of given elements.
@@ -46,20 +46,13 @@ jq.cfmonitor = {
         iframes: []
     };
 
-var options = jq.extend(jq.cfmonitor.options, options);
+var cfmonitor_options = jq.extend(jq.cfmonitor.cfmonitor_options, cfmonitor_options);
 var isOverIFrame = false;
         var object       = this;
 
 
 function cfmonitorProcess(event)
 {
-    // check if first click is enabled
-    /*if (updatedVisitCount === 0 && firstclick === 'true') {
-        //alert (updatedVisitCount + "firstclick true");
-        jQuery("." + customclass).remove();
-        event.preventDefault();
-    }*/
-
 
     var clientdata = {"clientIP": clientIP, "visitcount": updatedVisitCount};
     if (clientdata.clientIP) {
@@ -73,15 +66,11 @@ function cfmonitorProcess(event)
     }
 
 
-    //ajax_post();
-    //alert ("current clicks" + updatedVisitCount);
-
-
     if (updatedVisitCount >= maxclickcount)
     {
         //alert(updatedVisitCount + "blocked");
         jq = jQuery.noConflict();
-        // check if ad is disabled or hidden
+        // check if ad is disabled by excessive clicken or hidden by admin option
         if (disablead === 'true') {
             jQuery("." + customclass).remove();
             //event.preventDefault();
@@ -127,7 +116,7 @@ function checkit()
     if (updatedVisitCount === 0 && firstclick === 'true') {
         //alert (updatedVisitCount + "firstclick true");
         jQuery("." + customclass).remove();
-        event.preventDefault();
+        if (event.preventDefault) { event.preventDefault(); } else { event.returnValue = false; }
     }
 
     if (updatedVisitCount >= maxclickcount)
@@ -138,10 +127,11 @@ function checkit()
         // check if ad is disabled or hidden
         if (disablead === 'true') {
             jQuery("." + customclass).remove();
-            event.preventDefault();
+            /* preventDefault must be checked first because IE does not support it.*/
+            if (event.preventDefault) { event.preventDefault(); } else { event.returnValue = false; }
         } else {
             jQuery("." + customclass).remove();
-            event.preventDefault();
+            if (event.preventDefault) { event.preventDefault(); } else { event.returnValue = false; }
         }
         //alert (clientIP + 'Count' + updatedVisitCount);
     }
@@ -168,6 +158,7 @@ function countajaxclicks()
 // SAVE IFRAMES TO GLOBAL IFRAMES ARRAY
         function saveIframes (iframes) {
             iframes = jq(iframes).get();
+            
             // MULTI
             if(iframes.length > 1){
                 jq.each(iframes, function(i, val){
@@ -183,8 +174,9 @@ function countajaxclicks()
             jq.each(jq.cfmonitor.elements,function (index, element) {
                 // IFRAME(S) FOUND
                 if (jq(element).find('iframe').length > 0) {
-                    //alert ("iframe found1");
-                    frames = jq(element).find('iframe');
+                    alert ("iframe found1");
+                    
+                    var frames = jq(element).find('iframe');
                     frames = frames.get();
                     saveIframes(frames);
                 } 
@@ -193,6 +185,20 @@ function countajaxclicks()
             iframeAction(jq.cfmonitor.iframes);
             
         }
+        
+        // FIND IFRAMES
+        /*function findIframes () {
+            $.each($.adsguard.elements,function (index, element) {
+                // IFRAME(S) FOUND
+                if ($(element).find('iframe').length > 0) {
+                    frames = $(element).find('iframe');
+                    frames = frames.get();
+                    saveIframes(frames);
+                } 
+            });
+            
+            iframeAction($.adsguard.iframes);
+        }*/
         
         // IFRAME ACTION
         function iframeAction () {
@@ -259,9 +265,10 @@ function countajaxclicks()
 // UPDATE ELEMENTS
         function updateElements() {
             jq.cfmonitor.elements = [];
-           // console.log("UpdateElements");
+            //console.log("UpdateElements");
+            alert ("update elements");
             // DEFAULT ITEMS
-            if (options.defaultElements.length > 1) saveElements(options.defaultElements);
+            if (cfmonitor_options.defaultElements.length > 1) saveElements(cfmonitor_options.defaultElements);
         }
 
 /* Beginn */
@@ -274,22 +281,8 @@ jq(document).ready(function($)
     
     // FIND IFRAMES
     findIframes();
-    
-    /*setInterval(function() {
-        countajaxclicks();
-    }, (3000));*/
+
     jq("." + customclass).click(function(event) {
-        //alert ("ad cookie set");
-        //countajaxclicks();
-        //cfmonitorProcess(event);
-        // Loop check - Get sure that ads are disabled when backbutton is used
-        //console.log('Beginn setInterval');
-        ajax_post();
-        //return false;  
-        
-        // LOG
-        /*function log(message) {
-            console.log(message);
-        }*/
+    ajax_post();
     });
 });

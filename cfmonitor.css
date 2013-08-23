@@ -189,17 +189,17 @@ text-align: left;
 border-radius: 1px ;
 margin-top:1px;
 margin-bottom:0px;
-margin-left:320px;
+margin-left:0px;
 
 }
 
-.title
+/*.title
 {
 width:612px !important;
 padding:10px !important;
 background: #E4E4E4 !important;
 border:5px solid #E4E4E4 !important;
-}
+}*/
 
 
 #formtable

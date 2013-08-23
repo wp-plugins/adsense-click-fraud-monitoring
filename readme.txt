@@ -16,7 +16,7 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 
 == Description == 
 
-Blocks visitor from seeing your ads when they click multiple times on them.<br>
+This Google AdSense Plugin blocks visitor from seeing your ads when they click multiple times on them.<br>
 - Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 
 <h3> Links </h3>
@@ -108,9 +108,8 @@ Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordp
 
 = 1.7.1 = 
 
-* New: Use of native WordPress tables for list of blocked IP adresse
+* New: Use of sortable native WordPress tables for list of blocked IP adresses
 * New: Sort by IP and Last Click time possible
-* New premium features
 
 = 1.7 =
 * Fix: eventPrevent not working in IE

@@ -218,7 +218,7 @@ function cfmonitor_conf() {
                                                  <div class="rm_field">
                                                  <input name="cfmonitor_email" class="required email" id="cfmonitor_email" type="email" value="<?php if (get_option('cfmonitor_email') == '' || get_option('cfmonitor_email') == null) {echo get_option('admin_email');} else { echo get_option('cfmonitor_email');} ?>" />
                                                  </div>
-                                                    <div class="rm_desc"><small>(<?php _e('Sent a notification for any blocked IP to this email - <strong>It only works in the PREMIUM  version! Order it at <a href="http://demo.clickfraud-monitoring.com">Clickfraud-Monitoring.com</a></strong>'); ?>) </small>
+                                                    <div class="rm_desc"><small>(<?php _e('Sent a notification for any blocked IP to this email - <strong>It only works in the PREMIUM  version! Get it at <a href="http://demo.clickfraud-monitoring.com">Clickfraud-Monitoring.com</a></strong>'); ?>) </small>
                                                  </div>
                                                  </div>
                                             <div class="rm_input rm_text">

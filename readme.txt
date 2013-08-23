@@ -3,7 +3,7 @@ Contributors: ReneHermi
 Donate link: http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
+Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, ad sense, adsens, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.6
 Stable tag: 1.7.1
@@ -16,7 +16,7 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 
 == Description == 
 
-Blocks visitor from seeing your ads when they click multiple times on them.<br>
+This Google AdSense Plugin blocks visitor from seeing your ads when they click multiple times on them.<br>
 - Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 
 <h3> Links </h3>

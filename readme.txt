@@ -14,7 +14,7 @@ AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned f
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
 
 
-== Description == 
+== Description ==  
 
 Blocks visitor from seeing your ads when they click multiple times on them.<br>
 - Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.

@@ -24,7 +24,7 @@ This Google AdSense Plugin blocks visitor from seeing your ads when they click m
 [DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
 [More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
 
-<h3>Extended Version - Discount Code: 10PERCENT (Valid until 28th August 2013)</h3>
+<h3>Extended Version - Discount Code: 10PERCENT (Valid until 05th September 2013)</h3>
 
 You can purchase an extended version of this plugin and support me<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")

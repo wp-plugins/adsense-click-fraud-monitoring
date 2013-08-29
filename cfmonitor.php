@@ -4,7 +4,7 @@
  *	Author: Rene Hermenau
  *  Author URI: https://plus.google.com/u/0/105229046305078704903/posts
  *  Plugin URI: http://www.clickfraud-monitoring.com
- *	Version: 1.7.1
+ *	Version: 1.7.2
  *	Description: <strong>Monitors and prevents malicious clicks on Adsense ads.</strong> Important to prevent a exclusion from your Google Adsense account. <strong>How to use:</strong> Activate the Plugin -> Go to <a href="./plugins.php?page=cfmonitor-config">settings</a>, Save settings and wrap a div container around your Adsense code. For default use the class:<strong> div= 'cfmonitor' </strong><br><a href="http://www.clickfraud-monitoring.com/" target="_blank">Documentation</a> | <a href="http://demo.clickfraud-monitoring.com/" target="_blank">Demo site</a>
  *
  * Click-Fraud Monitoring is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ $installed_ver = get_option('cfmonitor_version');
 /* todo */
 //define('PLUGIN_NAME_SLUG','cfmonitor');
 define('CLICK_TABLE', $wpdb->prefix."clickfraudmonitor");
-define('CFMONITOR_VERSION', '1.7.1'); /*important for the upgrade routine. must be updated to current version*/
+define('CFMONITOR_VERSION', '1.7.2'); /*important for the upgrade routine. must be updated to current version*/
 define('CFMONITOR_PLUGIN_URL', plugin_dir_url( __FILE__ )); //production
 define('CFMONITOR_PLUGIN_INSTALL_FILE', plugin_basename(__FILE__));
 
@@ -48,13 +48,52 @@ include_once 'class.cfmonitor.php';
 if ( is_admin() )
 	require_once dirname( __FILE__ ) . '/admin.php';
 
+
+/**
+ * Upgrade routine for new table and plugin layout
+ */
+/* get the installed version number */
+
+function upgrade_db() {
+    /* compare installed version number with current version number */
+   if (isset($installed_ver) != CFMONITOR_VERSION) {
+        $tablename = CLICK_TABLE;
+        $sql = "CREATE TABLE " . $tablename . " (
+            ID int(11) NOT NULL AUTO_INCREMENT,
+            IP_ADDRESS varchar(20) NOT NULL,
+            BLOCKED TINYINT(1) NOT NULL DEFAULT '0',
+            CLICK_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            URL varchar(250) NULL,
+            PRIMARY KEY (ID))";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta($sql);
+        /* update version number */
+        update_option("cfmonitor_version", CFMONITOR_VERSION);
+    }
+}
+
+/*function myplugin_update_db_check() {
+   if (isset($installed_ver) != CFMONITOR_VERSION) {
+        upgrade_db();
+    }
+}
+add_action( 'plugins_loaded', 'myplugin_update_db_check' );
+ */
+
+
 /**
  * Initialize and create tables at activation process
  */
 function createtable_clickfraud()
 {
 	$tablename = CLICK_TABLE;
-	$q1 = "CREATE TABLE ".$tablename." (ID int(11) NOT NULL AUTO_INCREMENT, IP_ADDRESS varchar(20) NOT NULL , BLOCKED TINYINT(1) NOT NULL DEFAULT '0', CLICK_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY  (ID))";
+	$q1 = "CREATE TABLE ".$tablename." (
+                ID int(11) NOT NULL AUTO_INCREMENT,
+                IP_ADDRESS varchar(20) NOT NULL,
+                BLOCKED TINYINT(1) NOT NULL DEFAULT '0',
+                CLICK_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                URL varchar(250) NULL,
+                PRIMARY KEY (ID))";
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $q1 );			
         // create all option rows
@@ -69,37 +108,8 @@ function createtable_clickfraud()
         add_option('cfmonitor_blockfirst','');
         add_option('cfmonitor_disablead','false');       
 }
-        register_activation_hook(__FILE__,'createtable_clickfraud');
-
-        
-/**
- * Upgrade routine for new table and plugin layout
- */
-/* get the installed version number */
-
-function upgrade_db() {
-    /* compare installed version number with current version number */
-    if (isset($installed_ver) != CFMONITOR_VERSION) {
-        $tablename = CLICK_TABLE;
-        $sql = "CREATE TABLE " . $tablename . " (ID int(11) NOT NULL AUTO_INCREMENT, 
-            IP_ADDRESS varchar(20) NOT NULL , 
-            BLOCKED TINYINT(1) NOT NULL DEFAULT '0', 
-            CLICK_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-            PRIMARY KEY  (ID))";
-        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-        dbDelta($sql);
-        /* update version number */
-        update_option("cfmonitor_version", CFMONITOR_VERSION);
-    }
-}
-
-function myplugin_update_db_check() {
-   if (isset($installed_ver) != CFMONITOR_VERSION) {
-        upgrade_db();
-    }
-}
-add_action( 'plugins_loaded', 'myplugin_update_db_check' );
-        
+        //register_activation_hook(__FILE__,'createtable_clickfraud');
+      
 /* Strips the comma separated list of IP adresses */		
 function cf_should_block_for_myip_option($client_ip) {
     $option_value = get_option('cfmonitor_myip');
@@ -151,7 +161,7 @@ function cfenqueue_plugin_scripts() {
 }	
 add_action('wp_enqueue_scripts','cfenqueue_plugin_scripts');
 
-//delete custom table when deactivating plugin
+//delete table data on uninstall
 function prefix_on_deactivate() {
     global $wpdb;
     $tablename = CLICK_TABLE;
@@ -173,8 +183,10 @@ function prefix_on_deactivate() {
 
     //$wpdb->show_errors();
 }
+/* Action when plugin is deleted */
 //register_uninstall_hook(__FILE__, 'prefix_on_deactivate');
-register_deactivation_hook(__FILE__, 'prefix_on_deactivate');
+/* action when plugin is deactivated */
+//register_deactivation_hook(__FILE__, 'prefix_on_deactivate');
 //$wpdb->show_errors();
 //$wpdb->print_error();
 
@@ -195,4 +207,8 @@ if (!get_option('cfmonitor_click_threshold')) {
 add_action( 'activated_plugin', 'tl_save_error' );
 echo get_option( 'plugin_error' );
  */
+
+register_activation_hook(__FILE__,'createtable_clickfraud');
+register_uninstall_hook(__FILE__, 'prefix_on_deactivate');
+
 ?>

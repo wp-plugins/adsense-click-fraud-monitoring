@@ -3,8 +3,9 @@
 /*
  	Class Name: class.cfmonitor.php
  	Author: Rene Hermenau
- 	Version: 1.2
+ 	Version: 1.3
  	Description: Main class for AdSense Click Fraud Monitoring
+	@since 1.0
 */
 
  class clickfraudmonitor {
@@ -15,6 +16,7 @@
 	var $clientfound = null; 
 	var $isblockedcount = null;
 	var $table_name = null;
+        var $current_url = null;
 
 	function __construct($dbcls=null)
 	{
@@ -26,7 +28,9 @@
 		$this->table_name = $this->wpdb->prefix."clickfraudmonitor";
 		$this->clientip = $this->getclientip();
 		$this->clickcount = (isset($_POST['count']))?isset($_POST['count']):isset($_GET['count']);
+                //$this->current_url = (isset($_POST['clickurl']))?isset($_POST['clickurl']):isset($_GET['clickurl']);
 		$this->clientfound = $this->checkclient();
+                $this->current_url = $_POST['clickurl'];
                 
         /* call ajax*/
         if (is_admin()) {
@@ -60,11 +64,12 @@
                 $clickmonitor = new clickfraudmonitor();
                 $result['result'] = $clickmonitor->updateclick();
                 $result['message'] = ($result['result'])?'':'Error';
+                $clicker = json_decode($_POST['data']);
 		header( "Content-Type: application/json" );
 
                 echo json_encode (array(
                     'clicks' => $result['result'], 
-                    'message' => $result['message']
+                    'message' => $result['message'],
                         ));
 		exit;
 	}
@@ -230,6 +235,11 @@
 		$endformat = date($enddate);
                 
 		$daysDiff = $this->dateDiff($clickdateimplode,$currentdatedata);
+                
+                /* get the current url including get params 
+                 * We ll return it via the ajax post request in check.js
+                 */
+                
        
                 //$daysDifflastClick = $this->dateDiff($clicklastdateimplode,$currentdatedata);
                 
@@ -243,7 +253,7 @@
                      
 		if ($this->clientfound < $clickcount-1)
 		{
-			$sql =	"INSERT INTO ".esc_attr($this->table_name)." (IP_ADDRESS, BLOCKED, CLICK_TIMESTAMP) values('".esc_attr($this->clientip)."',0,now())";
+			$sql =	"INSERT INTO ".esc_attr($this->table_name)." (IP_ADDRESS, BLOCKED, CLICK_TIMESTAMP, URL) values('".esc_attr($this->clientip)."',0,now(),'" . $this->current_url . "')";
 			$resultinsert = $this->wpdb->query($sql);
 		}
 		else
@@ -253,7 +263,7 @@
                         //if (($this->clientfound >= $clickcount || $this->clickcount >= $clickcount)) {
 			if (($this->clientfound >= $clickcount-1)) {
                                 // Insert last click
-                                $sql_lastclick = "INSERT INTO ".esc_attr($this->table_name)." (IP_ADDRESS, BLOCKED, CLICK_TIMESTAMP) values('".esc_attr($this->clientip)."',0,now())";
+                                $sql_lastclick = "INSERT INTO ".esc_attr($this->table_name)." (IP_ADDRESS, BLOCKED, CLICK_TIMESTAMP, URL) values('".esc_attr($this->clientip)."',0,now(),'" . $this->current_url . "')";
                                 $insertlastclick = $this->wpdb->query($sql_lastclick);
                                 // set all clicks to blocked
 				$setfield = 'BLOCKED=1 ';
@@ -262,6 +272,7 @@
 				$resultinsert = $this->wpdb->query($sql);
 			}
                         /* < premium >*/
+                        
 		}
 
                 
@@ -281,15 +292,16 @@
                         "customclass" => $this->getcustomclass(),
                         "firstclick" => get_option('cfmonitor_blockfirst'),
                         "disablead" => get_option('cfmonitor_disablead'),
+                        "currentURL" => $_SERVER['REQUEST_URI']
                     
 		);
 		return $clientdetail;
 	}
         
        /* < premium >*/
+
     
-    function isblockedcount()
-	{
+    function isblockedcount(){
 		$bannedperiod = get_option('cfmonitor_ban_period');
 		$daySpan = get_option('cfmonitor_day_span');
 		$clickdata = $this->getFirstClickTimeStamp();

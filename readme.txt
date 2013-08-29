@@ -1,14 +1,14 @@
 === AdSense Click-Fraud Monitoring Plugin ===
 Contributors: ReneHermi
-Donate link: http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
+Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.6
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 
-Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website.
+AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your AdSense account due to malicious clicks on your ads.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
@@ -16,19 +16,20 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 
 == Description == 
 
-This Google AdSense Plugin blocks visitor from seeing your ads when they click multiple times on them.<br>
+Blocks visitor from seeing your ads when they click multiple times on them.<br>
 - Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 
-<h3> Links </h3> 
+<h3> Links </h3>
 
 [DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
 [More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
 
-<h3>Extended Version - Discount Code: 10PERCENT (Valid until 05th September 2013)</h3>
+<blockquote>
+<h3>Extended Version</h3>
 
 You can purchase an extended version of this plugin and support me<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
-
+</blockquote>
 </p>
 </p>
 <br>
@@ -108,8 +109,12 @@ Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordp
 
 = 1.7.1 = 
 
-* New: Use of sortable native WordPress tables for list of blocked IP adresses
+= 1.7.2 =
+* New: See the path and URL of the clicked ad
+
+* New: Use of native WordPress tables for list of blocked IP adresse
 * New: Sort by IP and Last Click time possible
+* New: premium features
 
 = 1.7 =
 * Fix: eventPrevent not working in IE

@@ -1,3 +1,4 @@
+/* get the vars from CDATA clientcfmonitor */
 var clientIP= clientcfmonitor.client_ip;
 var maxclickcount = clientcfmonitor.clickcount;
 var bannedperiod = clientcfmonitor.bannedperiod;
@@ -9,6 +10,8 @@ var counturl = AjaxCheckClicks.ajaxurl + "?action=ajax-checkclicks&nonce=" + non
 var firstclickdata = clientcfmonitor.firstclickdate;
 var firstclickdate = firstclickdata[0][1]-1;
 var updatedVisitCount = parseInt(clientcfmonitor.updatedVisitCount);
+//var currentURL = window.location.pathname;
+var currentURL = clientcfmonitor.currentURL;
 
 var jq = null;
 
@@ -84,13 +87,21 @@ function cfmonitorProcess(event)
 /* update clicks */
 function ajax_post()
 {
+    var postData = {
+                    count: updatedVisitCount,
+                    clickurl: currentURL        
+                    }
+    
     jq.ajax({
         type: "post",
         dataType: "json",
         url: preurl,
         //async : "false",
         //cache : "false",
-        data: {count: updatedVisitCount},
+        /*data: {count: updatedVisitCount,
+               clickurl: currentURL
+        },*/
+        data: postData,
         success: function(response) {
 
             //alert("updatedVisitCount" + response.success);
@@ -144,7 +155,7 @@ function countajaxclicks()
         type: "POST",
         dataType: "json",
         cache: false,
-        //url: "http://127.0.0.1/dev/wp-content/plugins/cfmonitor/checkclicks.php",
+        //url: "http://127.0.0.1/dev/wp-content/plugins/cfmonitor/checkclicks.php", only for testing
         url: counturl,
         success: function(data) {
             updatedVisitCount = data.clicks;
@@ -174,7 +185,7 @@ function countajaxclicks()
             jq.each(jq.cfmonitor.elements,function (index, element) {
                 // IFRAME(S) FOUND
                 if (jq(element).find('iframe').length > 0) {
-                    alert ("iframe found1");
+                    //alert ("iframe found1");
                     
                     var frames = jq(element).find('iframe');
                     frames = frames.get();
@@ -266,7 +277,7 @@ function countajaxclicks()
         function updateElements() {
             jq.cfmonitor.elements = [];
             //console.log("UpdateElements");
-            alert ("update elements");
+            //alert ("update elements");
             // DEFAULT ITEMS
             if (cfmonitor_options.defaultElements.length > 1) saveElements(cfmonitor_options.defaultElements);
         }

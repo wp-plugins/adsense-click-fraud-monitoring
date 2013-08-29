@@ -1,11 +1,11 @@
 <?php
 
 /*
- 	Class Name: class.cfmonitor-admin.php
- 	Author: Rene Hermenau
- *      version 1.0
- 	@scince 1.7
- 	Description: Main template class for AdSense Click Fraud Monitoring
+ *	Class Name: class.cfmonitor-admin.php
+ *	Author: Rene Hermenau
+ *  version 1.1
+ *	@scince 1.7
+ *	Description: Main template class for AdSense Click Fraud Monitoring
 */
 
 /*  Copyright 2011  Matthew Van Andel  (email : matt@mattvanandel.com)
@@ -53,64 +53,8 @@ if(!class_exists('WP_List_Table')){
  * 
  * Our theme for this list table is going to be movies.
  */
-class TT_Example_List_Table extends WP_List_Table {
-    
-
-    
-    /** ************************************************************************
-     * Normally we would be querying data from a database and manipulating that
-     * for use in your list table. For this example, we're going to simplify it
-     * slightly and create a pre-built array. Think of this as the data that might
-     * be returned by $wpdb->query().
-     * 
-     * @var array 
-     **************************************************************************/
-    /*var $example_data = array(
-            array(
-                'ID'        => 1,
-                'IP'     => '300',
-                'rating'    => 'Clicks',
-                'director'  => 'Last clicked on'
-            ),
-            array(
-                'ID'        => 2,
-                'title'     => 'Eyes Wide Shut',
-                'rating'    => 'R',
-                'director'  => 'Stanley Kubrick'
-            ),
-            array(
-                'ID'        => 3,
-                'title'     => 'Moulin Rouge!',
-                'rating'    => 'PG-13',
-                'director'  => 'Baz Luhrman'
-            ),
-            array(
-                'ID'        => 4,
-                'title'     => 'Snow White',
-                'rating'    => 'G',
-                'director'  => 'Walt Disney'
-            ),
-            array(
-                'ID'        => 5,
-                'title'     => 'Super 8',
-                'rating'    => 'PG-13',
-                'director'  => 'JJ Abrams'
-            ),
-            array(
-                'ID'        => 6,
-                'title'     => 'The Fountain',
-                'rating'    => 'PG-13',
-                'director'  => 'Darren Aronofsky'
-            ),
-            array(
-                'ID'        => 7,
-                'title'     => 'Watchmen',
-                'rating'    => 'R',
-                'director'  => 'Zach Snyder'
-            )
-        );*/
-    
-     
+class cfmonitor_table extends WP_List_Table {
+         
     
     /** ************************************************************************
      * REQUIRED. Set up a constructor that references the parent constructor. We 
@@ -125,17 +69,7 @@ class TT_Example_List_Table extends WP_List_Table {
             'plural'    => 'IP_ADDRESS',    //plural name of the listed records
             'ajax'      => false        //does this table support ajax?
         ) );
-       
         
-        /*$this->wpdb = $wpdb;
-        $this->table_name = $this->wpdb->prefix."clickfraudmonitor";
-	//$example_data = "select * from ".$this->table_name." where IP_ADDRESS ='".$clickip."' and CLICK_TIMESTAMP >= '$clickdateimplode%' and BLOCKED = 1";
-       
-        $sql = "select IP_ADDRESS, CLICK_TIMESTAMP from ".$this->table_name;
-        $example_data = $this->wpdb->query($sql);
-        //return $example_data;
-         * */
-         
     }
     
     
@@ -165,6 +99,7 @@ class TT_Example_List_Table extends WP_List_Table {
             case 'IP_ADDRESS':
             case 'CLICK_TIMESTAMP':
             case 'CLICKCOUNT':
+            case 'URL':
             case 'WHOIS':
                 return $item[$column_name];
             default:
@@ -189,12 +124,11 @@ class TT_Example_List_Table extends WP_List_Table {
      * @param array $item A singular item (one full row's worth of data)
      * @return string Text to be placed inside the column <td> (movie title only)
      **************************************************************************/
-    function column_title($item){
+     function column_IP_ADDRESS($item){
         
         //Build row actions
         $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&IP_ADDRESS=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&IP-ADDRESS=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+            'delete_selected_row'    => sprintf('<a href="?page=%s&action=%s&ip_address=%s">Delete (When blocked)</a>',$_REQUEST['page'],'delete_selected_row',$item['IP_ADDRESS']),
         );
         
         //Return the title contents
@@ -217,8 +151,8 @@ class TT_Example_List_Table extends WP_List_Table {
     function column_cb($item){
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
-            /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-            /*$2%s*/ $item['IP_ADDRESS']                //The value of the checkbox should be the record's id
+            /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("IP_ADDRESS")
+            /*$2%s*/ $item['IP_ADDRESS']                //The value of the checkbox should be the record's id, here IP_ADDRESS as unique identifier
         );
     }
     
@@ -242,7 +176,8 @@ class TT_Example_List_Table extends WP_List_Table {
             'IP_ADDRESS'     => 'IP Address',
             'CLICKCOUNT' => 'Clicks',
             'CLICK_TIMESTAMP'    => 'Last click time',
-            'WHOIS'  => 'Whois service',
+            'URL' => 'URL / Page of action',
+            'WHOIS'  => 'Whois service'
         );
         return $columns;
     }
@@ -265,7 +200,8 @@ class TT_Example_List_Table extends WP_List_Table {
         $sortable_columns = array(
             'IP_ADDRESS'     => array('IP_ADDRESS',false),     //true means it's already sorted
             //'CLICKCOUNT'    => array('CLICKCOUNT',false),
-            'CLICK_TIMESTAMP'  => array('CLICK_TIMESTAMP',false)
+            'CLICK_TIMESTAMP'  => array('CLICK_TIMESTAMP',false),
+            'URL' => array('URL',false)
         );
         return $sortable_columns;
     }
@@ -287,11 +223,52 @@ class TT_Example_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_bulk_actions() {
         $actions = array(
-            'delete'    => 'Delete'
+            'delete_all'    => 'Delete all (blocked) user',
+            'delete_selected' => 'Delete selected (blocked) user'
         );
         return $actions;
     }
     
+
+        /**
+	 * Adds a dropdown that allows filtering on the posts SQL query
+	 * Disabled
+	 * @return bool
+	 */
+	function posts_filter_dropdown() {
+		echo '<select name="qry_filter">';
+		echo '<option value="">' . __( "All SQl queries", 'cfmonitor' ) . '</option>';
+		foreach ( array(
+					  'qry_all'      => __( 'Show all clicks' ),
+					  'qry_more'     => __( 'More queries' )
+				  ) as $val => $text ) {
+			$sel = '';
+			if ( isset( $_POST['qry_filter'] ) && $_POST['qry_filter'] == $val )
+				$sel = 'selected ';
+			echo '<option ' . $sel . 'value="' . $val . '">' . $text . '</option>';
+		}
+		echo '</select>';
+	}
+        
+        /*
+         * Add Filter button with extra table navbar
+         * 
+         */
+        
+            /*function extra_tablenav($which) {
+       
+        ?>
+        		<div class="alignleft actions">
+        <?php
+        if ('top' == $which && !is_singular()) {
+            submit_button(__('Filter'), 'button', false, false, array('id' => 'post-query-submit'));
+        }
+        ?>
+        		</div>
+        <?php
+    }*/
+        
+      
     
     /** ************************************************************************
      * Optional. You can handle your bulk actions anywhere or anyhow you prefer.
@@ -306,11 +283,33 @@ class TT_Example_List_Table extends WP_List_Table {
             
         $table_adclick = $wpdb->prefix."clickfraudmonitor";
         //Detect when a bulk action is being triggered...
-        if( 'delete'===$this->current_action() ) {
-            //$strSQL = "DELETE * FROM" . $table_adclick;
-            $strSQL = "DELETE FROM " . $table_adclick;
+        if( 'delete_all'===$this->current_action() ) {
+            $strSQL = "DELETE FROM " . $table_adclick . " WHERE BLOCKED=1";
 	    $wpdb->query($strSQL);
             wp_die('IP adresses permanently deleted');
+        }
+        if( 'delete_selected'===$this->current_action() ) {
+            
+             $checkbox = $_GET['ip_address']; 
+             for($i=0;$i<count($checkbox);$i++)
+		{
+			if($checkbox[$i] != "")
+			{
+				$checkboxdata = $checkbox[$i]; 
+				//$strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' ";
+                                $strSQL = "DELETE FROM $table_adclick WHERE IP_ADDRESS ='".$checkboxdata."' AND BLOCKED=1";
+                                //$strSQL = "DELETE FROM $table_adclick WHERE IP_ADDRESS ='" .$_GET['ip_address']. "' AND BLOCKED=1";
+				$results = $wpdb->query($strSQL);
+			}
+		}
+        }
+        
+        if ('delete_selected_row' === $this->current_action()) {
+
+            $checkbox = $_GET['ip_address'];
+            $strSQL = "DELETE FROM $table_adclick WHERE IP_ADDRESS ='" . $checkbox . "' AND BLOCKED=1";
+
+            $results = $wpdb->query($strSQL);
         }
         
     }
@@ -345,7 +344,7 @@ class TT_Example_List_Table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = 5;
+        $per_page = 20;
         
         
         /**
@@ -375,16 +374,7 @@ class TT_Example_List_Table extends WP_List_Table {
          */
         $this->process_bulk_action();
         
-        /**
-         * 
-         * arg1 show all ip addresses or only the blocked ones
-         */
         
-        if ($arg1 == true) {
-            $blocked = 'BLOCKED=1';
-        } else {
-            $blocked = 'BLOCKED=1 OR BLOCKED=0';
-        }
         
         /**
          * Instead of querying a database, we're going to fetch the example data
@@ -396,34 +386,44 @@ class TT_Example_List_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
         /* sort order */
-        $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'ID'; //If no sort, default to CLICK_TIMESTAMP
+        $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'ID'; //If no sort, default to ID/IP_ADDRESS
         $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'desc'; //If no sort, default to asc
         
+        /**
+         * 
+         * arg1 switch query | all ip addresses or only the blocked ones
+         */
+        $sql = "";
+        if ($arg1 == 'blocked') {
+            $blocked = 'BLOCKED=1';
+            $sql = "select *,max(CLICK_TIMESTAMP) as CLICK_TIMESTAMP from ".$table_adclick." where " . $blocked . " group by IP_ADDRESS order by " . $orderby . " " . $order;
+        } else {
+            $blocked = 'BLOCKED=1 OR BLOCKED=0';
+            $sql = "select * from ".$table_adclick." where " . $blocked . " order by " . $orderby . " " . $order;
+        }
         
-	$sql = "select *,max(CLICK_TIMESTAMP) as CLICK_TIMESTAMP from ".$table_adclick." where " . $blocked . " group by IP_ADDRESS order by " . $orderby . " " . $order;
-	//$sql = "SELECT ID, IP_ADDRESS, CLICK_TIMESTAMP, BLOCKED FROM" . $table_adclick;
         $result_qry = $wpdb->get_results($sql);
         
         $data = array();
-        
         /* build the result array */
        if (!empty($result_qry)) {
             foreach ($result_qry as $row) {
                 $ip = $row->IP_ADDRESS;
                 $timestamp = $row->CLICK_TIMESTAMP;
-                $blocked = $row->BLOCKED;
-
-
-                //$query = "select * from " . $table_adclick . " where IP_ADDRESS ='" . $ip . "' and BLOCKED=1 order by CLICK_TIMESTAMP desc";
+                //$blocked = $row->BLOCKED;
                 $query = "select * from " . $table_adclick . " where IP_ADDRESS ='" . $ip . "' and " . $blocked . " order by " . $orderby . " " . $order . "";
                 $results = $wpdb->get_results($query);
+                if ($arg1 == 'blocked') {
                 $countresult = count($results);
-                
+                }else {
+                $countresult = 1;    
+                }
                 $data[] = array(
                         'ID' => $row->ID,
                         'IP_ADDRESS' => $row->IP_ADDRESS,
                         'CLICKCOUNT' => $countresult,
                         'CLICK_TIMESTAMP' => $timestamp,
+                        'URL' => $row->URL,
                         'WHOIS' => '<a href="' . plugin_dir_url( __FILE__ ) . '/phpwhois/whois.php?query=' . $row->IP_ADDRESS . '&output=normal" target="_blank">Whois</a>'                  
                 );
             }
@@ -454,6 +454,14 @@ class TT_Example_List_Table extends WP_List_Table {
      
         
         /**
+         * modify pagination string
+         * 
+         */
+        
+
+     
+        
+        /**
          * This checks for sorting input and sorts the data in our array accordingly.
          * 
          * In a real-world situation involving a database, you would probably want 
@@ -461,25 +469,15 @@ class TT_Example_List_Table extends WP_List_Table {
          * to a custom query. The returned data will be pre-sorted, and this array
          * sorting technique would be unnecessary.
          */
-        function usort_reorder($a,$b){
+        /*function usort_reorder($a,$b){
             $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'IP_ADDRESS'; //If no sort, default to title
             $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
             $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
-            return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
-        }
+            return ($order==='aschghg') ? $result : -$result; //Send final sort direction to usort
+            
+        }*/
         //usort($data, 'usort_reorder');
-        
-        
-        /***********************************************************************
-         * ---------------------------------------------------------------------
-         * vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-         * 
-         * In a real-world situation, this is where you would place your query.
-         * 
-         * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         * ---------------------------------------------------------------------
-         **********************************************************************/
-        
+        //usort($data, 'usort_reorder');
                 
         /**
          * REQUIRED for pagination. Let's figure out what page the user is currently 
@@ -522,5 +520,6 @@ class TT_Example_List_Table extends WP_List_Table {
             'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
         ) );
     }
+   
     
 }

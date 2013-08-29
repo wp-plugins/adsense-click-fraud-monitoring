@@ -3,8 +3,7 @@
 /**
  * admin settings
  *
- * @package     EDD
- * @subpackage  Functions
+ * @package     ClickFraud Monitoring
  * @copyright   Copyright (c) 2013, René Hermenau
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -16,6 +15,7 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 // Include classes
+include_once 'cfmonitor.php';
 include_once 'class.cfmonitor.php';
 include_once 'class.cfmonitor-admin.php';
 
@@ -164,7 +164,7 @@ function cfmonitor_conf() {
 
 	<div class="wrap rm_wrap">
             <div>
-                <img src="<?php echo plugin_dir_url( __FILE__ );?>./images/logo.png">
+                <img src="<?php echo plugin_dir_url( __FILE__ );?>./images/logo.png"><br>Free Version: <?php echo CFMONITOR_VERSION; ?><br>Get the premium version at <a href="http://demo.clickfraud-monitoring.com" target="_blank">clickfraud-monitoring.com</a>
             </div>
 		<h3><?php _e('Click-Fraud Settings'); ?></h3>
 		<div class="rm_opts">
@@ -295,31 +295,30 @@ function cfmonitor_conf() {
 		</div>
 	</div>
 <div style="clear:both;">
-<?php unblockIP(); ?>
-<form method="post" id="ipblocktable" style="padding-top:20px;" value="<?php echo $_REQUEST['page'] ?>">
-	<div>
-		<span><h3><?php _e('A list of currently blocked ip adresses:'); ?></h3></span>
-		
-	</div>
+    <form action="" method="GET" id="ipblocktable" style="padding-top:20px;">
+        <input type='hidden' name='page' value='<?php echo $_REQUEST['page']; ?>'/>
     <?php 
-    
-    //Create an instance of our package class...
-    $IPlistTable = new TT_Example_List_Table();
-    //Fetch, prepare, sort, and filter our data...
-    $IPlistTable->prepare_items(true);
-    $IPlistTable->display();
-    
+    /* filter mysql query */
+
+    unblockIP(); 
     ?>
-	  <div class='btnUnblock'>
-		<p>
-			<input type='submit' name='btnUnblock' class='button-primary' value='Unblock selected IP' />
-		</p>
-	</div>
-    <div class='showAllClicks'>
-		<p>
-			<input type='submit' name='allclicks' class='button-primary' value='Show all ad clicks' />
-		</p>
-	</div>
+        <div class='btnUnblock' style="float:left;padding:5px;">
+            <p>
+                <input type='submit' name='btnUnblock' class='button-primary' value='Delete selected user' />
+                
+            </p>
+        </div>
+        <div class='btnUnblock' style="float:left;padding:5px;">
+            <p>
+                <input type='submit' name='allclicks' class='button-primary' value='Statistic' />
+            </p>
+        </div>
+        <div class='btnUnblock' style="float:left;padding:5px;">
+            <p>
+                <a href="./plugins.php?page=<?php echo $_REQUEST['page']; ?> " target="_self" class="button-primary"><span style="button-primary">Show blocked User</span></a> 
+                
+            </p>
+        </div>
 
 </form>
 </div>
@@ -329,11 +328,19 @@ function cfmonitor_conf() {
 
 function unblockIP()
 {
-	if (isset($_POST['btnUnblock']))
+
+        
+        if (isset($_GET['btnUnblock']) || !isset($_GET['allclicks'])){
+            /* show list of blocked IP addresses */
+            echo "<br><h3>Blocked user:</h3>";
+            $IPlistTable = new cfmonitor_table();
+            $IPlistTable->prepare_items('blocked');
+            $IPlistTable->display();
+            
+        }
+	if (isset($_GET['btnUnblock']))
 	{
-		//$ipaddr = $_POST['ipaddress'];
-		//$checkbox = $_POST['checkbox'];
-                $checkbox = $_POST['ip_address']; 
+        $checkbox = $_GET['ip_address']; 
 				
 		global $wpdb;
 		$table_cfmonitor = CLICK_TABLE;
@@ -343,22 +350,19 @@ function unblockIP()
 			if($checkbox[$i] != "")
 			{
 				$checkboxdata = $checkbox[$i]; 
-				//$strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' ";
-                                $strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' ";
+                $strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' AND blocked=1";
 				$results = $wpdb->query($strSQL);
 			}
 		}
 	
 	}
-        
-        if (isset($_POST['allclicks']))
-	{
-		//$ipaddr = $_POST['ipaddress'];
-		//$checkbox = $_POST['checkbox'];
-                if (isset($_POST['ip_address'])){
-				$checkbox = $_POST['ip_address']; 
-				}
-		echo '<img src="' . plugin_dir_url( __FILE__ ) . '/images/smiley_sad.png" alt="I am soory"><br><h3>I am very soory!</h3>
+
+    if (isset($_GET['allclicks']) && $_GET['allclicks'] == 'Statistic') {
+        if (isset($_GET['ip_address'])) {
+            $checkbox = $_GET['ip_address'];
+        }
+		/*<PREM>*/
+        echo '<img src="' . plugin_dir_url(__FILE__) . '/images/smiley_sad.png" alt="I am soory"><br><h3>I am very soory!</h3>
                     <br> This feature is only available in the premium version. <p>
                     The development of this plugin takes up a lot of time,<br> 
                     but i am willing to integrate as many of your desired features as possible.<br> 
@@ -379,17 +383,16 @@ function unblockIP()
                     Thanks for reading all that stuff.</p>
                     Yours, René
                    <br>
-                   <br><a href="./plugins.php?page=' . $_REQUEST['page'] . '" target="_self" class="button-primary"><span style="button-primary">I prefer to wait</span></a> or &nbsp;<a href="http://demo.clickfraud-monitoring.com/?download=click-fraud-monitoring" target="_blank" class="button-primary">Let me support you - I spent the 12 bucks now</a>';		
-                    //Create an instance of our package class...
-                    $IPlistTable = new TT_Example_List_Table();		 
-                //Fetch, prepare, sort, and filter our data...
-                //$IPlistTable->prepare_items(false);
-                //$IPlistTable->display();
+                   <br><a href="./plugins.php?page=' . $_REQUEST['page'] . '" target="_self" class="button-primary"><span style="button-primary">I prefer to wait</span></a> or &nbsp;<a href="http://demo.clickfraud-monitoring.com/?download=click-fraud-monitoring" target="_blank" class="button-primary">Let me support you - I spent the 12 bucks now</a>';
 		
-	
-		
-	
-	}
+
+        /*<PREM>*/
+		echo "<br><h3>Blocked user:</h3>";
+            $IPlistTable = new cfmonitor_table();
+            $IPlistTable->prepare_items('blocked');
+            $IPlistTable->display();
+        
+    }
        
 }
 

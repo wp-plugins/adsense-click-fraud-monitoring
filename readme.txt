@@ -24,12 +24,12 @@ Blocks visitor from seeing your ads when they click multiple times on them.<br>
 [DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
 [More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
 
-<blockquote>
+
 <h3>Extended Version</h3>
 
 You can purchase an extended version of this plugin and support me<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
-</blockquote>
+
 </p>
 </p>
 <br>

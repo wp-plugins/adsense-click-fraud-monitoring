@@ -1,11 +1,23 @@
 <?php
+
+/**
+ * admin settings
+ *
+ * @package     EDD
+ * @subpackage  Functions
+ * @copyright   Copyright (c) 2013, René Hermenau
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+
 // Nothing to do when called directly
 if ( !function_exists( 'add_action' ) ) {
 	echo "Nothing to do";
 	exit;
 }
-
+// Include classes
 include_once 'class.cfmonitor.php';
+include_once 'class.cfmonitor-admin.php';
 
 
 add_action( 'admin_menu', 'cfmonitor_admin_menu' );
@@ -206,7 +218,7 @@ function cfmonitor_conf() {
                                                  <div class="rm_field">
                                                  <input name="cfmonitor_email" class="required email" id="cfmonitor_email" type="email" value="<?php if (get_option('cfmonitor_email') == '' || get_option('cfmonitor_email') == null) {echo get_option('admin_email');} else { echo get_option('cfmonitor_email');} ?>" />
                                                  </div>
-                                                    <div class="rm_desc"><small>(<?php _e('Sent a notification for any blocked IP to this email - <strong>It only works in the PREMIUM  version! Order it at <a href="http://demo.clickfraud-monitoring.com">Clickfraud-Moinitoring.com</a> for only 12$.</strong>'); ?>) </small>
+                                                    <div class="rm_desc"><small>(<?php _e('Sent a notification for any blocked IP to this email - <strong>It only works in the PREMIUM  version! Get it at <a href="http://demo.clickfraud-monitoring.com">Clickfraud-Monitoring.com</a></strong>'); ?>) </small>
                                                  </div>
                                                  </div>
                                             <div class="rm_input rm_text">
@@ -284,53 +296,31 @@ function cfmonitor_conf() {
 	</div>
 <div style="clear:both;">
 <?php unblockIP(); ?>
-<form method="post" id="ipblocktable" style="padding-top:20px;">
+<form method="post" id="ipblocktable" style="padding-top:20px;" value="<?php echo $_REQUEST['page'] ?>">
 	<div>
-		<span><?php _e('Blocked user'); ?></span>
-		<table id="ipdata">
-			<tr>
-				<th style='width: 20%;text-align: left;'><strong>IP Address</strong></th>
-				<th style='width: 20%;text-align: left;'><strong>Click Count</strong></th>
-				<th style='width: 25%;text-align: left;'><strong>Last Clicked On</strong></th>
-				<th style='width: 20%;text-align: left;'><strong>Unblock IP's</strong></th>
-                                <th style='width: 15%;text-align: left;'><strong>Whois Service</strong></th>
-			</tr>
-			<?php 
-				global $wpdb;
-				
-				$table_adclick = CLICK_TABLE;
-				$sql = "select *,max(CLICK_TIMESTAMP) as CLICK_TIMESTAMP from ".$table_adclick." where BLOCKED=1 group by IP_ADDRESS";
-				$result = $wpdb->get_results($sql);
-				
-				if(!empty($result))
-				{
-				foreach($result as $row)
-				{
-					$ip	= $row->IP_ADDRESS;
-					$timestamp = $row->CLICK_TIMESTAMP;
-					$blocked = $row->BLOCKED;
-					$query = "select * from ".$table_adclick." where IP_ADDRESS ='".$ip."' and BLOCKED=1 order by CLICK_TIMESTAMP desc";
-					$results = $wpdb->get_results($query);
-					$countresult = count($results);	
-			?>
-					<tr style="">
-						<td><?php echo $ip; ?><input type='hidden' name='ipaddress' id='ipaddress' value='<?php echo $ip; ?>' />
-						</td>
-						<td><?php echo $countresult; ?></td>
-					  	<td><?php echo ($timestamp=='0000-00-00 00:00:00')?'':date('Y-m-d  H:i:s',strtotime($timestamp));?></td>
-						<td><div class='check'><input id="checkbox[]" type='checkbox' name='checkbox[]' value="<?php echo $ip; ?>" <?php echo ($blocked ?' checked="checked" ':''); ?>/></div></td>
-                                                <td><a href="<?php echo plugin_dir_url( __FILE__ );?>./phpwhois/whois.php?query=<?php echo $ip; ?>&output=normal" target="_blank">Whois</a></td>
-					</tr>
-		<?php	}
-				}
-		 ?>
-		</table>
+		<span><h3><?php _e('A list of currently blocked ip adresses:'); ?></h3></span>
+		
 	</div>
+    <?php 
+    
+    //Create an instance of our package class...
+    $IPlistTable = new TT_Example_List_Table();
+    //Fetch, prepare, sort, and filter our data...
+    $IPlistTable->prepare_items(true);
+    $IPlistTable->display();
+    
+    ?>
 	  <div class='btnUnblock'>
 		<p>
 			<input type='submit' name='btnUnblock' class='button-primary' value='Unblock selected IP' />
 		</p>
 	</div>
+    <div class='showAllClicks'>
+		<p>
+			<input type='submit' name='allclicks' class='button-primary' value='Show all ad clicks' />
+		</p>
+	</div>
+
 </form>
 </div>
 <?php
@@ -341,8 +331,9 @@ function unblockIP()
 {
 	if (isset($_POST['btnUnblock']))
 	{
-		$ipaddr = $_POST['ipaddress'];
-		$checkbox = $_POST['checkbox']; 
+		//$ipaddr = $_POST['ipaddress'];
+		//$checkbox = $_POST['checkbox'];
+                $checkbox = $_POST['ip_address']; 
 				
 		global $wpdb;
 		$table_cfmonitor = CLICK_TABLE;
@@ -352,12 +343,54 @@ function unblockIP()
 			if($checkbox[$i] != "")
 			{
 				$checkboxdata = $checkbox[$i]; 
-				$strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' ";
+				//$strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' ";
+                                $strSQL = "DELETE FROM $table_cfmonitor WHERE IP_ADDRESS ='".$checkboxdata."' ";
 				$results = $wpdb->query($strSQL);
 			}
 		}
 	
 	}
+        
+        if (isset($_POST['allclicks']))
+	{
+		//$ipaddr = $_POST['ipaddress'];
+		//$checkbox = $_POST['checkbox'];
+                if (isset($_POST['ip_address'])){
+				$checkbox = $_POST['ip_address']; 
+				}
+		echo '<img src="' . plugin_dir_url( __FILE__ ) . '/images/smiley_sad.png" alt="I am soory"><br><h3>I am very soory!</h3>
+                    <br> This feature is only available in the premium version. <p>
+                    The development of this plugin takes up a lot of time,<br> 
+                    but i am willing to integrate as many of your desired features as possible.<br> 
+                    Due to my limited time it is only possible to create that special functions<br>
+                    when i find a way to earn a small amount for my work.<br> 
+                    <p>
+                    Personally i use and love free software and i am sure you also!<br>
+                    So i decided to make new features first for the premium version but<br>
+                    later i integrate all those functions step by step into the free version as well.<br> 
+                    So even, when you are out of pocket and not able to pay for the premium version<br> 
+                    you can wait until new functions get integrated.<br>
+                    Think this system is fair for everyone.<br> 
+                    <p>So if you cannot wait for the latest release and want to support me,<br>
+                    <b>just purchase it.</b></p>
+                    <p>If you do not have any money just wait.<br> 
+                    You´ll get the same features later or sooner 
+                    <br><b>- i promise! -</b></p>
+                    Thanks for reading all that stuff.</p>
+                    Yours, René
+                   <br>
+                   <br><a href="./plugins.php?page=' . $_REQUEST['page'] . '" target="_self" class="button-primary"><span style="button-primary">I prefer to wait</span></a> or &nbsp;<a href="http://demo.clickfraud-monitoring.com/?download=click-fraud-monitoring" target="_blank" class="button-primary">Let me support you - I spent the 12 bucks now</a>';		
+                    //Create an instance of our package class...
+                    $IPlistTable = new TT_Example_List_Table();		 
+                //Fetch, prepare, sort, and filter our data...
+                //$IPlistTable->prepare_items(false);
+                //$IPlistTable->display();
+		
+	
+		
+	
+	}
+       
 }
 
 

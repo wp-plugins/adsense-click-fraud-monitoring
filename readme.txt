@@ -19,7 +19,7 @@ Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to
 This Google AdSense Plugin blocks visitor from seeing your ads when they click multiple times on them.<br>
 - Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 
-<h3> Links </h3>
+<h3> Links </h3> 
 
 [DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
 [More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")

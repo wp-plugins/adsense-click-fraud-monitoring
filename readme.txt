@@ -94,6 +94,8 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 = Thanks and credit =
 Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
 
+Contest: [What is a SEOphonist?](http://www.x-simulator.de/forum/what-is-seophonist-t4673.html"What is a SEOphonist?")
+
 == Installation ==
 1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.
 2. Activate the plugin through the 'Plugins' menu in WordPress.

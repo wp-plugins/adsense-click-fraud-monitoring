@@ -85,7 +85,7 @@ For AdSense your code should look like: `<div class="cfmonitor">YOUR AdSense COD
 From now on every click on your ads are counted by the IP and current user session. If the clicks reach a adjusted number of clicks within a specified timerange, the advertising is deactivated for that visitor and no further click fraud is possible. If that happens, you´ll get a email notofication and are able to see in the admin panel what´s going on by a list of blocked visitors.
 If there should be a larger attack on your site with a lot of different IP´s you are able to hide all advertisings complete or only selected by country. That helps enourmous to react and investigate the case without loosing too much of your earnings.
 
-Google is pretty good to recognize a few mistaken clicks but a larger attack should be reported at the official Google contact form [Invalid Clicks Contact Form](https://support.google.com/adsense/contact/invalid_clicks_contact?hl=en"Invalid Clicks contact form")
+Google is pretty good to recognize a few mistaken clicks but a larger attack should be reported at the official Google contact form [Invalid Clicks Contact Form](https://support.google.com/adsense/contact/invalid_clicks_contact?hl=en "Invalid Clicks contact form")
 
 = Why would Google ban me? =
 
@@ -94,7 +94,7 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 = Thanks and credit =
 Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
 
-Contest: [What is a SEOphonist?](http://www.x-simulator.de/forum/what-is-seophonist-t4673.html"What is a SEOphonist?")
+Contest: [What is a SEOphonist?](http://www.x-simulator.de/forum/what-is-seophonist-t4673.html "What is a SEOphonist?")
 
 == Installation ==
 1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.

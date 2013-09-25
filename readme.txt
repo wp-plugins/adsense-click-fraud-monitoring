@@ -1,14 +1,14 @@
 === AdSense Click-Fraud Monitoring Plugin ===
 Contributors: ReneHermi
-Donate link: http://codecanyon.net/item/adsense-clickfraud-monitor/4759515
+Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.6
-Stable tag: 1.7
+Stable tag: 1.7.3
 
-Click-Fraud Monitor Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your website.
+AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your AdSense account due to malicious clicks on your ads.
 
 #Click-Fraud monitor for Google AdSense and other PPC vendors. 
 #Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
@@ -23,6 +23,7 @@ Blocks visitor from seeing your ads when they click multiple times on them.<br>
 
 [DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
 [More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
+
 
 <h3>Extended Version</h3>
 
@@ -84,7 +85,7 @@ For AdSense your code should look like: `<div class="cfmonitor">YOUR AdSense COD
 From now on every click on your ads are counted by the IP and current user session. If the clicks reach a adjusted number of clicks within a specified timerange, the advertising is deactivated for that visitor and no further click fraud is possible. If that happens, you´ll get a email notofication and are able to see in the admin panel what´s going on by a list of blocked visitors.
 If there should be a larger attack on your site with a lot of different IP´s you are able to hide all advertisings complete or only selected by country. That helps enourmous to react and investigate the case without loosing too much of your earnings.
 
-Google is pretty good to recognize a few mistaken clicks but a larger attack should be reported at the official Google contact form [Invalid Clicks Contact Form](https://support.google.com/adsense/contact/invalid_clicks_contact?hl=en"Invalid Clicks contact form")
+Google is pretty good to recognize a few mistaken clicks but a larger attack should be reported at the official Google contact form [Invalid Clicks Contact Form](https://support.google.com/adsense/contact/invalid_clicks_contact?hl=en "Invalid Clicks contact form")
 
 = Why would Google ban me? =
 
@@ -92,6 +93,8 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 = Thanks and credit =
 Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
+
+Contest: [What is a SEOphonist?](http://www.x-simulator.de/forum/what-is-seophonist-t4673.html "What is a SEOphonist?")
 
 == Installation ==
 1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.
@@ -105,6 +108,17 @@ Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordp
 3. screenshot-4.png
 
 == Changelog ==
+
+
+= 1.7.3 = 
+* Use of blockUI to prevent very fast multiple consecutively clicks
+
+= 1.7.2 =
+* New: See the path and URL of the clicked ad
+
+* New: Use of native WordPress tables for list of blocked IP adresse
+* New: Sort by IP and Last Click time possible
+* New: premium features
 
 = 1.7 =
 * Fix: eventPrevent not working in IE

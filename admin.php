@@ -164,7 +164,7 @@ function cfmonitor_conf() {
 
 	<div class="wrap rm_wrap">
             <div>
-                <img src="<?php echo plugin_dir_url( __FILE__ );?>./images/logo.png"><br>Free Version: <?php echo CFMONITOR_VERSION; ?><br>Get the premium version at <a href="http://demo.clickfraud-monitoring.com" target="_blank">clickfraud-monitoring.com</a>
+                <img src="<?php echo plugin_dir_url( __FILE__ );?>./images/logo.png"><br>Free Version: <?php echo CFMONITOR_VERSION; ?><br>Get the premium version at <a href="http://demo.clickfraud-monitoring.com" target="_blank">clickfraud-monitoring.com</a><br>Use the discount Code <b>10PERCENT</b>
             </div>
 		<h3><?php _e('Click-Fraud Settings'); ?></h3>
 		<div class="rm_opts">

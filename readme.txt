@@ -29,6 +29,7 @@ Blocks visitor from seeing your ads when they click multiple times on them.<br>
 
 You can purchase an extended version of this plugin and support me<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+Get 10 Percent discount | Use the Discount Code <strong>10PERCENT</strong> (only for a limited time)
 
 </p>
 </p>
@@ -109,6 +110,8 @@ Contest: [What is a SEOphonist?](http://www.x-simulator.de/forum/what-is-seophon
 
 == Changelog ==
 
+= 1.7.4 =
+* minnor changes
 
 = 1.7.3 = 
 * Use of blockUI to prevent very fast multiple consecutively clicks

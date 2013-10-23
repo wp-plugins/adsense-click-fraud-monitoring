@@ -5,38 +5,30 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
-Tested up to: 3.6
+Tested up to: 3.6.1
 Stable tag: 1.7.4
 
 AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your AdSense account due to malicious clicks on your ads.
 
-#Click-Fraud monitor for Google AdSense and other PPC vendors. 
-#Prevents to be banned and excluded from your AdSense account due to malicious third party clicks on advertisements on your website.
-
-
 == Description == 
 
-Blocks visitor from seeing your ads when they click multiple times on them.<br>
 - Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
+Blocks visitor from seeing your ads when they click multiple times on them.<br>
 
 <h3> Links </h3>
 
 [DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
 [More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
 
-
 <h3>Extended Version</h3>
 
-You can purchase an extended version of this plugin and support me<br>
+You can purchase an extended version of this plugin with additional features<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
 Get 10 Percent discount | Use the Discount Code <strong>10PERCENT</strong> (only for a limited time)
-
 </p>
 </p>
 <br>
-
-Premium features in developing: AdSense click stats including IP, URL of the clicked ad and size of the ad.
-(Will be realized if there are a minimum of 5 user who want it: 
+Rate for new functions: 
 [Rate for it](http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907 "Suggest new features")
 
 Official site for demonstration, docs and support:

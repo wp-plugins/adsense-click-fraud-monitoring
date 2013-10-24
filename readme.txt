@@ -8,7 +8,7 @@ Requires at least: 3.1+
 Tested up to: 3.6.1
 Stable tag: 1.7.4
 
-AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your ads.
+AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
 == Description == 
 

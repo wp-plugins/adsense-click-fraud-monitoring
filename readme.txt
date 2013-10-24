@@ -3,17 +3,19 @@ Contributors: ReneHermi
 Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: AdSense click fraud monitoring, AdSense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, links invalid klicks, click bomb, click bombing, clickbomb, admin, ads, advertisement, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
+Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC
 Requires at least: 3.1+
 Tested up to: 3.6.1
 Stable tag: 1.7.4
 
-AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your AdSense account due to malicious clicks on your ads.
+AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned from your account due to malicious clicks on your ads.
 
 == Description == 
 
-- Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
-Blocks visitor from seeing your ads when they click multiple times on them.<br>
+Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
+Blocks visitor from seeing your ads when they click multiple times on them. Increases your revenue and CPC.
+Find out why this plugin is fantastic:
+<br>
 
 <h3> Links </h3>
 
@@ -86,8 +88,6 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 
 = Thanks and credit =
 Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
-
-Contest: [What is a SEOphonist?](http://www.x-simulator.de/forum/what-is-seophonist-t4673.html "What is a SEOphonist?")
 
 == Installation ==
 1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.

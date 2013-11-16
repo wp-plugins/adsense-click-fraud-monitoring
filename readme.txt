@@ -10,7 +10,7 @@ Stable tag: 1.7.5
 
 AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
-== Description == 
+== Description ==
 
 Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
 Blocks visitor from seeing your ads when they click multiple times on them. Increases your revenue and CPC.

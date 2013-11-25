@@ -29,10 +29,6 @@ Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com
 Get 10 Percent discount | Use the Discount Code <strong>10PERCENT</strong> (only for a limited time)
 </p>
 </p>
-<br>
-Rate for new functions: 
-[Rate for it](http://wordpress.org/support/topic/suggestion-40?replies=2#post-4555907 "Suggest new features")
-
 Official site for demonstration, docs and support:
 http://www.clickfraud-monitoring.com
 
@@ -89,9 +85,50 @@ In easy words: Google takes care that every click on any AdSense advertising is 
 = Thanks and credit =
 Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordpress.org/hoovilation/
 
+== Other Notes ==
+
+Let me explain why you need extra protection for your Google AdSense account.
+
+= Definition of Click fraud and Invalid clicks = 
+
+I often get questions from new website owners about the meaning what these two terms mean, and i'd like to help you to understand the difference.
+Google Adsense defines Invalid clicks as clicks for which they decide not to charge their AdWords advertisers, since they may artificially drive up advertiser cost or publisher revenue. These include extraneous clicks without any value to the advertiser, such as the second click of a double-click. They also include many other types of clicks that the have determined aren't motivated by genuine user interests.
+
+Google Adsense "Invalid clicks" are often confused with "clicking on your own ads". However, they would like to stress that invalid clicks are generally any clicks that artificially inflate advertiser cost or publisher revenue, regardless of their source.
+
+Google Adsense Click fraud is a subset of invalid clicks that are generated with malicious or fraudulent intent -- in other words, clicks that are intended to drive up advertiser cost or publisher revenue artificially. Sources for these clicks include, but are not limited to:
+* A publisher clicking on his own ads, or encouraging clicks on his ads
+* Users or family members clicking to support the site / publisher
+* Third-party programs with user incentives, such as paid-to-click services and click-exchanges
+* Automated clicking tools, robots, or other deceptive software
+
+The same principles above apply to ad impressions and conversions as well. Some sources of invalid impressions include, but are not limited to:
+* Excessive page refreshes, generated either manually or automatically
+* Third-party programs with user incentives, such as paid-to-surf or auto-surf programs
+* Third-party programs for purchasing fixed amounts of traffic, e.g. "$10 for 1,000 page views"
+
+As a reminder, any method that artificially generates impressions, conversions or clicks is strictly prohibited by the [Google AdSense program policies.](https://support.google.com/adsense/answer/48182?sourceid=aso&subid=ww-en-et-asblog_2008-08-08&medium=link) You can also find more information about these topics in the 
+[Google AdSense Invalid Clicks FAQ](https://support.google.com/adsense/answer/16737?ref_topic=1348720&rd=2) and the [Google AdSense Ad Traffic Quality Resource Center.](http://www.google.com/ads/adtrafficquality/)
+
+= Why do i need extra protection for Google AdSense =
+
+Thats very easy: Google will not tell you in advance or at the same timepoint about any issue with your click conversion rate 
+when they detect something strange like a lot of increasing clicks or clicks only from a specific country. The reason is obviously the fact that smart people could find out the detection formula behind the AdSense programm. They could be able to find out what they have to prevent so Google would not be able to recognize if a click had been done by a real visitor, a bot or any instructed visitor.
+The complete AdSense programm would be totally broken and not working profitable any more
+
+So, Google will watch you for a time and when you do not expect it, they will immediately close your account and will not give you any reason for it. They will even close your account for any detected issue which has been done in the past, from days or weeks ago. 
+You have no chance to find out what you or any other party did on your website that leads to your banned AdSense account.
+
+The only thing you can do is to take care that Google AdSense will never be able to detect any suspicious activities regarding the AdSense click behavior on your website, so have to reduce the malicious clicks on your site as much as possible.
+
+Be safe, use the ClickFraud Monitor!
+
+== Official Site ==
+* http://www.clickfraud-monitoring.com
+
 == Installation ==
-1. Download the plugin "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Download the Google AdSense plugin  "Click Fraud Monitoring" , unzip and place it in your wp-content/plugins/ folder. You can alternatively upload and install it via the WordPress plugin backend.
+2. Activate the AdSense plugin through the 'Plugins' menu in WordPress.
 3. Select Plugins->Click fraud monitor 
 
 == Screenshots ==
@@ -181,44 +218,3 @@ Yes
 It´s working with any pay per click ad vendor. It´s not focused on AdSense.
 
 Get the complete documentation at: http://www.clickfraud-monitoring.com/ 
-
-== Other Notes ==
-
-Let me explain why you need extra protection for your Google AdSense account.
-
-= Definition of Click fraud and Invalid clicks = 
-
-I often get questions from new website owners about the meaning what these two terms mean, and i'd like to help you to understand the difference.
-Google Adsense defines Invalid clicks as clicks for which they decide not to charge their AdWords advertisers, since they may artificially drive up advertiser cost or publisher revenue. These include extraneous clicks without any value to the advertiser, such as the second click of a double-click. They also include many other types of clicks that the have determined aren't motivated by genuine user interests.
-
-Google Adsense "Invalid clicks" are often confused with "clicking on your own ads". However, they would like to stress that invalid clicks are generally any clicks that artificially inflate advertiser cost or publisher revenue, regardless of their source.
-
-Google Adsense Click fraud is a subset of invalid clicks that are generated with malicious or fraudulent intent -- in other words, clicks that are intended to drive up advertiser cost or publisher revenue artificially. Sources for these clicks include, but are not limited to:
-* A publisher clicking on his own ads, or encouraging clicks on his ads
-* Users or family members clicking to support the site / publisher
-* Third-party programs with user incentives, such as paid-to-click services and click-exchanges
-* Automated clicking tools, robots, or other deceptive software
-
-The same principles above apply to ad impressions and conversions as well. Some sources of invalid impressions include, but are not limited to:
-* Excessive page refreshes, generated either manually or automatically
-* Third-party programs with user incentives, such as paid-to-surf or auto-surf programs
-* Third-party programs for purchasing fixed amounts of traffic, e.g. "$10 for 1,000 page views"
-
-As a reminder, any method that artificially generates impressions, conversions or clicks is strictly prohibited by the [Google AdSense program policies.](https://support.google.com/adsense/answer/48182?sourceid=aso&subid=ww-en-et-asblog_2008-08-08&medium=link) You can also find more information about these topics in the 
-[Google AdSense Invalid Clicks FAQ](https://support.google.com/adsense/answer/16737?ref_topic=1348720&rd=2) and the [Google AdSense Ad Traffic Quality Resource Center.](http://www.google.com/ads/adtrafficquality/)
-
-= Why do i need extra protection for Google AdSense =
-
-Thats very easy: Google will not tell you in advance or at the same timepoint about any issue with your click conversion rate 
-when they detect something strange like a lot of increasing clicks or clicks only from a specific country. The reason is obviously the fact that smart people could find out the detection formula behind the AdSense programm. They could be able to find out what they have to prevent so Google would not be able to recognize if a click had been done by a real visitor, a bot or any instructed visitor.
-The complete AdSense programm would be totally broken and not working profitable any more
-
-So, Google will watch you for a time and when you do not expect it, they will immediately close your account and will not give you any reason for it. They will even close your account for any detected issue which has been done in the past, from days or weeks ago. 
-You have no chance to find out what you or any other party did on your website that leads to your banned AdSense account.
-
-The only thing you can do is to take care that Google AdSense will never be able to detect any suspicious activities regarding the AdSense click behavior on your website, so have to reduce the malicious clicks on your site as much as possible.
-
-Be safe, use the ClickFraud Monitor!
-
-== Official Site ==
-* http://www.clickfraud-monitoring.com

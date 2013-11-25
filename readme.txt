@@ -147,8 +147,6 @@ Thanks and credit goes to user Haval Aloussi for his help: http://profiles.wordp
 = 1.0 = 
 * First revision
 
-== Issues ==
-Not known yet
 
 == Frequently Asked Questions ==
 
@@ -184,7 +182,7 @@ It´s working with any pay per click ad vendor. It´s not focused on AdSense.
 
 Get the complete documentation at: http://www.clickfraud-monitoring.com/ 
 
-=== Other Notes ===
+== Other Notes ==
 
 Let me explain why you need extra protection for your Google AdSense account.
 

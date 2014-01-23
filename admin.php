@@ -285,12 +285,15 @@ function cfmonitor_conf() {
                                                                     
                                                                     $headers = get_headers($checkurl, 1);
                                                                     //$matches = "200";
+                                                                    
                                                                     preg_match_all( '/HTTP\/1\.\d (\d{3}) ([\w\d\s+]+)/', $headers[0], $matches );
                                                                     //echo "test" . $matches[1][0] . "<br>";
+                                                                    //echo $html->find('.' . get_option('cfmonitor_customclass'));
+                                                                    //var_dump ($html->find('.' . get_option('cfmonitor_customclass')));
                                                                     //var_dump($matches);
                                                                     //echo $headers[0];
                                                                         if ($matches[1][0] == '200') {
-                                                                            if ($html->find('.' . get_option('cfmonitor_customclass')) > ' ') {
+                                                                            if ($html->find('.' . get_option('cfmonitor_customclass')) != null) {
                                                                                 echo "<h2>Ads have been found on " . get_option('cfmonitor_checkurl') . " <br> It seem that the script is working properly.</h2>";
                                                                          } else {
                                                                                 echo "<h2>No Ads have been found. Check if the class '<strong>" . get_option('cfmonitor_customclass') . "</strong>' can be found in the HTML source of your page. Specify a valid URL for testing.</h2>";

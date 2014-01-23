@@ -27,7 +27,16 @@ jQuery(document).ready(function() {
         });
         
         jQuery("#clickgetmyip").click(function(){
-            jQuery("#cfmonitor_myip").val(cfclientip);
+            var currentVal = jQuery("#cfmonitor_myip").val();
+            if (!currentVal)
+                currentVal = '';
+            
+            if (currentVal.indexOf(cfclientip) >= 0)
+                return;
+
+            currentVal += (currentVal.length > 0 ? ', ' : '') + cfclientip;
+
+            jQuery("#cfmonitor_myip").val(currentVal);
         });
 
 });

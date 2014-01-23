@@ -4,13 +4,14 @@
 .rm_wrap{
 	width:900px;
 	padding: 0px;
-	background-color: #ffffff!important;
+	/*background-color: #ffffff!important;*/
 }
 #ipblocktable {
-	width:940px;
-	background-color: #ffffff!important;
+	/*width:940px;*/
+	/*background-color: #ffffff!important;
 	margin-top: 20px;
-	padding-top: 10px;
+	padding-top: 10px;*/
+        margin-right:20px;
 }
 
 .rm_section{
@@ -18,6 +19,7 @@
 	border-bottom:0;
 	background:#ffffff!important;
 	width: 90%;
+        padding:10px;
 }
 
 .rm_opts label{
@@ -189,17 +191,17 @@ text-align: left;
 border-radius: 1px ;
 margin-top:1px;
 margin-bottom:0px;
-margin-left:320px;
+margin-left:0px;
 
 }
 
-.title
+/*.title
 {
 width:612px !important;
 padding:10px !important;
 background: #E4E4E4 !important;
 border:5px solid #E4E4E4 !important;
-}
+}*/
 
 
 #formtable

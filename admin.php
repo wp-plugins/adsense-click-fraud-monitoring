@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2013, René Hermenau
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
+ * @Version     1.7.6
  */
 
 // Nothing to do when called directly
@@ -153,6 +154,12 @@ function cfmonitor_conf() {
                   }else{
                         update_option( 'cfmonitor_disablead', 'false' );
                  }
+                 
+                 if ( isset( $_POST['cfmonitor_checkurl'] ) ){
+			update_option( 'cfmonitor_checkurl', $_POST['cfmonitor_checkurl'] );
+                  }else{
+                        update_option( 'cfmonitor_checkurl', 'false' );
+                 }
 
 
 	} 
@@ -166,7 +173,7 @@ function cfmonitor_conf() {
             <div>
                 <img src="<?php echo plugin_dir_url( __FILE__ );?>./images/logo.png"><br>Free Version: <?php echo CFMONITOR_VERSION; ?><br>Get the premium version at <a href="http://demo.clickfraud-monitoring.com" target="_blank">clickfraud-monitoring.com</a><br>Use the discount Code <b>10PERCENT</b>
             </div>
-		<h3><?php _e('Click-Fraud Settings'); ?></h3>
+		<h3><?php _e('Anti Click-Fraud Settings'); ?></h3>
 		<div class="rm_opts">
 			<form action="" method="post" id="cfmonitor-conf" style="margin: auto;">
 				<div class="rm_section" style="float:left;">
@@ -232,7 +239,7 @@ function cfmonitor_conf() {
                                                  </div>
                                                  </div>
                                             </div>   
-                                                <div style="display:none;float:clear;" id="div-cfadvanced"><h3>Advanced Menu</h3>
+                                                <div style="float:clear;" id="div-cfadvanced">
                                                 <div class="rm_input rm_text">
                                                 <div class="label">
                                                  <label for="cfmonitor_customclass"><?php _e('Custom Class:'); ?> </label>
@@ -254,6 +261,59 @@ function cfmonitor_conf() {
                                                  <div class="rm_desc"><small>(<?php _e('Fill in your IP address to block any ads on your site. Useful to prevent unintended clicks by yourself or your teammates. Leave empty when you do not want to block yourself. You may also include a list of IP addresses by separating them with commas (ie: 111.222.33.44, 55.22.77.888)'); ?>) </small></div>
                                                     
                                                  </div>
+                                                    <div class="rm_input rm_text" style="border: 1px solid #DBDBDB;padding:5px;">
+                                                            <strong>Requirements:</strong> Use the following div container around your ads:
+                                                            <pre style='background-color: black;color:white;padding:3px;'>&lt;div class='cfmonitor'&gt;ADSENSE CODE HERE&lt;/div&gt;</pre>
+                                                        
+                                                            <small style="width:100%;">The name 'cfmonitor' is default. You can choose a name of your choice but must change the field 'Custom Class' than.<br> <a href="mailto:admin@xsimulator.net">Get in contact with me</a> if you need support.</small>
+
+                                                            <div style="float:clear;">
+                                                                    
+                                                                    <?php
+                                                                    // Create DOM from URL or file
+                                                                    require_once 'simple_html_dom.php';
+                                                                    //$checkurl = 'http://127.0.0.1/dev/hello-world/';
+                                                                    $checkurl = (string)get_option('cfmonitor_checkurl');
+                                                                    //$html = file_get_html($checkurl);
+                                                                    $html = file_get_html($checkurl);
+
+                                                                        // Find all divs with class 
+                                                                        //foreach($html->find('cfmonitor') as $element) 
+                                                                        //foreach ($html->find('.' . get_option('cfmonitor_customclass')) as $element)
+                                                                        //echo $element . '<br>';
+                                                                     //if (get_option('cfmonitor_checkurl') != 'No URL specified' || get_option('cfmonitor_checkurl') != null){
+                                                                    
+                                                                    $headers = get_headers($checkurl, 1);
+                                                                    //$matches = "200";
+                                                                    preg_match_all( '/HTTP\/1\.\d (\d{3}) ([\w\d\s+]+)/', $headers[0], $matches );
+                                                                    //echo "test" . $matches[1][0] . "<br>";
+                                                                    //var_dump($matches);
+                                                                    //echo $headers[0];
+                                                                        if ($matches[1][0] == '200') {
+                                                                            if ($html->find('.' . get_option('cfmonitor_customclass')) > ' ') {
+                                                                                echo "<h2>Ads have been found on " . get_option('cfmonitor_checkurl') . " <br> It seem that the script is working properly.</h2>";
+                                                                         } else {
+                                                                                echo "<h2>No Ads have been found. Check if the class '<strong>" . get_option('cfmonitor_customclass') . "</strong>' can be found in the HTML source of your page. Specify a valid URL for testing.</h2>";
+                                                                                }
+                                                                            }else {
+                                                                                echo "<br><strong style='color:red;'>No valid URL for check run specified, or URL is not reachable.</strong><br><br>";
+                                                                            }
+                                                                                
+                                                                    
+                                                                        
+                                                                     //}
+                                                                    ?>
+
+                                                                    <input type="submit" name="submit" class="button-primary" value="<?php _e('Save settings and run a check  &raquo;'); ?>" />
+                                                                    <br><br><small style='width:380px;'><strong>Optional (Only needed for run check):</strong> Specify a URL which should be tested if the class 'cfmonitor' is available in HTML source: </small><br><input name="cfmonitor_checkurl" class="text" id="cfmonitor_checkurl" style='width:300px;' type="text" value="<?php if (get_option('cfmonitor_checkurl') == '' || get_option('cfmonitor_checkurl') == null) {echo 'http://www.example.com/page/';} else { echo get_option('cfmonitor_checkurl');} ?>" />
+
+                                                                    <!--<a href="./plugins.php?page=<?php //echo $_REQUEST['page'];  ?>" target="_self" class="button-primary"><span style="button-primary">Run Check</span></a>!-->
+                                                                </div>
+                                                    
+                                                    
+                                                    
+                                                    </div>
+                                                 
                                                  <!--   <div class="rm_input rm_text">
                                                 <div class="label">
                                                  <label for="cfmonitor_blockfirst"><?php //_e('Block first click:'); ?> </label>
@@ -276,16 +336,11 @@ function cfmonitor_conf() {
                                                  </div>-->
                                                    
                                                 </div>
-                                                <div style="float:clear;">
-                                                <p><a href="#" id="click-cfadvanced">Advanced settings</a></p>
-                                                </div>
+                                               
                                         </div>
                           
                            
-                            <div style="float:clear;">
-                                
-                                <p class="submit"><input type="submit" name="submit" value="<?php _e('Save settings &raquo;'); ?>" /></p>
-                            </div>
+                            
                          
 				
 
@@ -295,7 +350,7 @@ function cfmonitor_conf() {
 		</div>
 	</div>
 <div style="clear:both;">
-    <form action="" method="GET" id="ipblocktable" style="padding-top:20px;">
+    <form action="" method="GET" id="ipblocktable" style="">
         <input type='hidden' name='page' value='<?php echo $_REQUEST['page']; ?>'/>
     <?php 
     /* filter mysql query */
@@ -370,20 +425,16 @@ function unblockIP()
                     when i find a way to earn a small amount for my work.<br> 
                     <p>
                     Personally i use and love free software and i am sure you also!<br>
-                    So i decided to make new features first for the premium version but<br>
-                    later i integrate all those functions step by step into the free version as well.<br> 
-                    So even, when you are out of pocket and not able to pay for the premium version<br> 
-                    you can wait until new functions get integrated.<br>
-                    Think this system is fair for everyone.<br> 
+                    So i decided to make new features first for the premium version and<br>
+                    later i integrate most of this functions step by step into the free version as well.<br> 
+                    
                     <p>So if you cannot wait for the latest release and want to support me,<br>
                     <b>just purchase it.</b></p>
-                    <p>If you do not have any money just wait.<br> 
-                    You´ll get the same features later or sooner 
-                    <br><b>- i promise! -</b></p>
+           
                     Thanks for reading all that stuff.</p>
                     Yours, René
                    <br>
-                   <br><a href="./plugins.php?page=' . $_REQUEST['page'] . '" target="_self" class="button-primary"><span style="button-primary">I prefer to wait</span></a> or &nbsp;<a href="http://demo.clickfraud-monitoring.com/?download=click-fraud-monitoring" target="_blank" class="button-primary">Let me support you - I spent the 12 bucks now</a>';
+                   <br><a href="http://demo.clickfraud-monitoring.com/?download=click-fraud-monitoring" target="_blank" class="button-primary">Let me support you - I spent the 12 bucks now</a>';
 		
 
         /*<PREM>*/

@@ -5,8 +5,8 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC, widget
 Requires at least: 3.1+
-Tested up to: 3.7.1
-Stable tag: 1.7.5
+Tested up to: 3.8.0
+Stable tag: 1.7.6
 
 AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
@@ -139,17 +139,24 @@ Be safe, use the ClickFraud Monitor!
 
 == Changelog ==
 
-= 1.7.5 =
-* Tested up to WordPress 3.7.1
+= Version 1.7.6 (23.01.2014) = 
+* New: Performance improvements
+* New: Check script to determine if ads has been wrapped successfully with class 'cfmonitor' by the user
+* Rewrite of the table listing (Better pagination)
+* Fixed: Rewritten noConflict mode to be more compatible with third party plugins
+* CSV Export (In premium edition)
 
-= 1.7.4 =
-* minnor changes
+= 1.7.4 - 1.7.5 =
+* Some smaller improvements and fixes. Nothing relevant
 
 = 1.7.3 = 
 * Use of blockUI to prevent very fast multiple consecutively clicks
 
 = 1.7.2 =
 * New: See the path and URL of the clicked ad
+* Some minor changes like spelling issues. Nothing safety related 
+
+= 1.7.1 = 
 
 * New: Use of native WordPress tables for list of blocked IP adresse
 * New: Sort by IP and Last Click time possible

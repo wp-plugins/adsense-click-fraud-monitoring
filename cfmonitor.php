@@ -4,7 +4,7 @@
  *	Author: Rene Hermenau
  *  Author URI: https://plus.google.com/u/0/105229046305078704903/posts
  *  Plugin URI: http://www.clickfraud-monitoring.com
- *	Version: 1.7.5
+ *	Version: 1.7.6
  *	Description: <strong>Monitors and prevents malicious clicks on Adsense ads.</strong> Important to prevent a exclusion from your Google Adsense account. <strong>How to use:</strong> Activate the Plugin -> Go to <a href="./plugins.php?page=cfmonitor-config">settings</a>, Save settings and wrap a div container around your Adsense code. For default use the class:<strong> div= 'cfmonitor' </strong><br><a href="http://www.clickfraud-monitoring.com/" target="_blank">Documentation</a> | <a href="http://demo.clickfraud-monitoring.com/" target="_blank">Demo site</a>
  *
  * Click-Fraud Monitoring is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ $installed_ver = get_option('cfmonitor_version');
 /* todo */
 //define('PLUGIN_NAME_SLUG','cfmonitor');
 define('CLICK_TABLE', $wpdb->prefix."clickfraudmonitor");
-define('CFMONITOR_VERSION', '1.7.5'); /*important for the upgrade routine. must be updated to current version*/
+define('CFMONITOR_VERSION', '1.7.6'); /*important for the upgrade routine. must be updated to current version*/
 define('CFMONITOR_PLUGIN_URL', plugin_dir_url( __FILE__ )); //production
 define('CFMONITOR_PLUGIN_INSTALL_FILE', plugin_basename(__FILE__));
 
@@ -107,6 +107,7 @@ function createtable_clickfraud()
         add_option('cfmonitor_customclass','cfmonitor');
         add_option('cfmonitor_blockfirst','');
         add_option('cfmonitor_disablead','false');       
+        add_option('cfmonitor_checkurl','http://example.com/page/');
 }
         //register_activation_hook(__FILE__,'createtable_clickfraud');
       
@@ -180,6 +181,7 @@ function prefix_on_deactivate() {
     delete_option('cfmonitor_customclass', 'cfmonitor');
     delete_option('cfmonitor_blockfirst');
     delete_option('cfmonitor_disablead');
+    delete_option('cfmonitor_checkurl');
 
     //$wpdb->show_errors();
 }

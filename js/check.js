@@ -1,3 +1,4 @@
+
 /* get the vars from CDATA clientcfmonitor */
 var clientIP= clientcfmonitor.client_ip;
 var maxclickcount = clientcfmonitor.clickcount;
@@ -13,7 +14,7 @@ var updatedVisitCount = parseInt(clientcfmonitor.updatedVisitCount);
 //var currentURL = window.location.pathname;
 var currentURL = clientcfmonitor.currentURL;
 
-var jq = null;
+var jq = jQuery;
 
 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 var clickdate = new Date(firstclickdata[0][0],firstclickdate,firstclickdata[0][2],firstclickdata[1][0],firstclickdata[1][1],firstclickdata[1][2]);
@@ -23,8 +24,6 @@ var endDate = new Date(secondDate);
 var customclass = clientcfmonitor.customclass;
 var firstclick  = clientcfmonitor.firstclick;
 var disablead = clientcfmonitor.disablead;
-
-jq = jQuery.noConflict();
 
 var wrapperclass = "." + customclass;
 
@@ -72,7 +71,7 @@ function cfmonitorProcess(event)
     if (updatedVisitCount >= maxclickcount)
     {
         //alert(updatedVisitCount + "blocked");
-        jq = jQuery.noConflict();
+        /*jq = jQuery.noConflict();*/
         // check if ad is disabled by excessive clicken or hidden by admin option
         if (disablead === 'true') {
             jQuery("." + customclass).remove();
@@ -134,7 +133,7 @@ function checkit()
     {
         //reloadpage();
         //alert (updatedVisitCount + "blocked");
-        jq = jQuery.noConflict();
+        /*jq = jQuery.noConflict();*/
         // check if ad is disabled or hidden
         if (disablead === 'true') {
             jQuery("." + customclass).remove();
@@ -198,16 +197,16 @@ function countajaxclicks()
         
         // FIND IFRAMES
         /*function findIframes () {
-            $.each($.adsguard.elements,function (index, element) {
+            jq.each(jq.adsguard.elements,function (index, element) {
                 // IFRAME(S) FOUND
-                if ($(element).find('iframe').length > 0) {
-                    frames = $(element).find('iframe');
+                if (jq(element).find('iframe').length > 0) {
+                    frames = jq(element).find('iframe');
                     frames = frames.get();
                     saveIframes(frames);
                 } 
             });
             
-            iframeAction($.adsguard.iframes);
+            iframeAction(jq.adsguard.iframes);
         }*/
         
         // IFRAME ACTION
@@ -282,7 +281,7 @@ function countajaxclicks()
         }
 
 /* Beginn */
-jq(document).ready(function($)
+jq(document).ready(function()
 {
     // UPDATE ELEMENTS -> VALIDATE SETTINGS -> ADD ACTION
     updateElements();
@@ -302,13 +301,14 @@ jq(document).ready(function($)
 
     jq("." + customclass).click(function(event) {
             // unblock when ajax activity stops 
-            $(document).ajaxStop($.unblockUI); 
+            jq(document).ajaxStop(jQuery.unblockUI); 
             // Block the complete page
-            $.blockUI(); 
+            jQuery.blockUI(); 
             // ajax request
             ajax_post();
     });
 });
+
 /*!
  * jQuery blockUI plugin
  * Version 2.65.0-2013.09.02
@@ -327,80 +327,80 @@ jq(document).ready(function($)
 /*jshint eqeqeq:false curly:false latedef:false */
 "use strict";
 
-	function setup($) {
-		$.fn._fadeIn = $.fn.fadeIn;
+	function setup(jQuery) {
+		jQuery.fn._fadeIn = jQuery.fn.fadeIn;
 
-		var noOp = $.noop || function() {};
+		var noOp = jQuery.noop || function() {};
 
 		// this bit is to ensure we don't call setExpression when we shouldn't (with extra muscle to handle
 		// confusing userAgent strings on Vista)
 		var msie = /MSIE/.test(navigator.userAgent);
 		var ie6  = /MSIE 6.0/.test(navigator.userAgent) && ! /MSIE 8.0/.test(navigator.userAgent);
 		var mode = document.documentMode || 0;
-		var setExpr = $.isFunction( document.createElement('div').style.setExpression );
+		var setExpr = jQuery.isFunction( document.createElement('div').style.setExpression );
 
-		// global $ methods for blocking/unblocking the entire page
-		$.blockUI   = function(opts) { install(window, opts); };
-		$.unblockUI = function(opts) { remove(window, opts); };
+		// global jQuery methods for blocking/unblocking the entire page
+		jQuery.blockUI   = function(opts) { install(window, opts); };
+		jQuery.unblockUI = function(opts) { remove(window, opts); };
 
 		// convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
-		$.growlUI = function(title, message, timeout, onClose) {
-			var $m = $('<div class="growlUI"></div>');
-			if (title) $m.append('<h1>'+title+'</h1>');
-			if (message) $m.append('<h2>'+message+'</h2>');
+		jQuery.growlUI = function(title, message, timeout, onClose) {
+			var jQuerym = jQuery('<div class="growlUI"></div>');
+			if (title) jQuerym.append('<h1>'+title+'</h1>');
+			if (message) jQuerym.append('<h2>'+message+'</h2>');
 			if (timeout === undefined) timeout = 3000;
 
 			// Added by konapun: Set timeout to 30 seconds if this growl is moused over, like normal toast notifications
 			var callBlock = function(opts) {
 				opts = opts || {};
 
-				$.blockUI({
-					message: $m,
+				jQuery.blockUI({
+					message: jQuerym,
 					fadeIn : typeof opts.fadeIn  !== 'undefined' ? opts.fadeIn  : 700,
 					fadeOut: typeof opts.fadeOut !== 'undefined' ? opts.fadeOut : 1000,
 					timeout: typeof opts.timeout !== 'undefined' ? opts.timeout : timeout,
 					centerY: false,
 					showOverlay: false,
 					onUnblock: onClose,
-					css: $.blockUI.defaults.growlCSS
+					css: jQuery.blockUI.defaults.growlCSS
 				});
 			};
 
 			callBlock();
-			var nonmousedOpacity = $m.css('opacity');
-			$m.mouseover(function() {
+			var nonmousedOpacity = jQuerym.css('opacity');
+			jQuerym.mouseover(function() {
 				callBlock({
 					fadeIn: 0,
 					timeout: 30000
 				});
 
-				var displayBlock = $('.blockMsg');
+				var displayBlock = jQuery('.blockMsg');
 				displayBlock.stop(); // cancel fadeout if it has started
 				displayBlock.fadeTo(300, 1); // make it easier to read the message by removing transparency
 			}).mouseout(function() {
-				$('.blockMsg').fadeOut(1000);
+				jQuery('.blockMsg').fadeOut(1000);
 			});
 			// End konapun additions
 		};
 
 		// plugin method for blocking element content
-		$.fn.block = function(opts) {
+		jQuery.fn.block = function(opts) {
 			if ( this[0] === window ) {
-				$.blockUI( opts );
+				jQuery.blockUI( opts );
 				return this;
 			}
-			var fullOpts = $.extend({}, $.blockUI.defaults, opts || {});
+			var fullOpts = jQuery.extend({}, jQuery.blockUI.defaults, opts || {});
 			this.each(function() {
-				var $el = $(this);
-				if (fullOpts.ignoreIfBlocked && $el.data('blockUI.isBlocked'))
+				var jQueryel = jQuery(this);
+				if (fullOpts.ignoreIfBlocked && jQueryel.data('blockUI.isBlocked'))
 					return;
-				$el.unblock({ fadeOut: 0 });
+				jQueryel.unblock({ fadeOut: 0 });
 			});
 
 			return this.each(function() {
-				if ($.css(this,'position') == 'static') {
+				if (jQuery.css(this,'position') == 'static') {
 					this.style.position = 'relative';
-					$(this).data('blockUI.static', true);
+					jQuery(this).data('blockUI.static', true);
 				}
 				this.style.zoom = 1; // force 'hasLayout' in ie
 				install(this, opts);
@@ -408,9 +408,9 @@ jq(document).ready(function($)
 		};
 
 		// plugin method for unblocking element content
-		$.fn.unblock = function(opts) {
+		jQuery.fn.unblock = function(opts) {
 			if ( this[0] === window ) {
-				$.unblockUI( opts );
+				jQuery.unblockUI( opts );
 				return this;
 			}
 			return this.each(function() {
@@ -418,12 +418,13 @@ jq(document).ready(function($)
 			});
 		};
 
-		$.blockUI.version = 2.65; // 2nd generation blocking at no extra cost!
+		jQuery.blockUI.version = 2.65; // 2nd generation blocking at no extra cost!
 
 		// override these in your code to change the default behavior and style
-		$.blockUI.defaults = {
+		jQuery.blockUI.defaults = {
 			// message displayed when blocking (use null for no message)
-			message:  '<h1>Please wait...</h1>',
+			//message:  '<h1>Please wait...</h1>',
+			message: null,
 
 			title: null,		// title string; only used when theme == true
 			draggable: true,	// only used when theme == true (requires jquery-ui.js to be loaded)
@@ -432,7 +433,7 @@ jq(document).ready(function($)
 
 			// styles for the message when blocking; if you wish to disable
 			// these and use an external stylesheet then do this in your code:
-			// $.blockUI.defaults.css = {};
+			// jQuery.blockUI.defaults.css = {};
 			css: {
 				padding:	0,
 				margin:		0,
@@ -464,7 +465,7 @@ jq(document).ready(function($)
 			// of lingering wait cursor
 			cursorReset: 'default',
 
-			// styles applied when using $.growlUI
+			// styles applied when using jQuery.growlUI
 			growlCSS: {
 				width:		'350px',
 				top:		'10px',
@@ -562,17 +563,17 @@ jq(document).ready(function($)
 			var css, themedCSS;
 			var full = (el == window);
 			var msg = (opts && opts.message !== undefined ? opts.message : undefined);
-			opts = $.extend({}, $.blockUI.defaults, opts || {});
+			opts = jQuery.extend({}, jQuery.blockUI.defaults, opts || {});
 
-			if (opts.ignoreIfBlocked && $(el).data('blockUI.isBlocked'))
+			if (opts.ignoreIfBlocked && jQuery(el).data('blockUI.isBlocked'))
 				return;
 
-			opts.overlayCSS = $.extend({}, $.blockUI.defaults.overlayCSS, opts.overlayCSS || {});
-			css = $.extend({}, $.blockUI.defaults.css, opts.css || {});
+			opts.overlayCSS = jQuery.extend({}, jQuery.blockUI.defaults.overlayCSS, opts.overlayCSS || {});
+			css = jQuery.extend({}, jQuery.blockUI.defaults.css, opts.css || {});
 			if (opts.onOverlayClick)
 				opts.overlayCSS.cursor = 'pointer';
 
-			themedCSS = $.extend({}, $.blockUI.defaults.themedCSS, opts.themedCSS || {});
+			themedCSS = jQuery.extend({}, jQuery.blockUI.defaults.themedCSS, opts.themedCSS || {});
 			msg = msg === undefined ? opts.message : msg;
 
 			// remove the current block (if there is one)
@@ -585,7 +586,7 @@ jq(document).ready(function($)
 			if (msg && typeof msg != 'string' && (msg.parentNode || msg.jquery)) {
 				var node = msg.jquery ? msg[0] : msg;
 				var data = {};
-				$(el).data('blockUI.history', data);
+				jQuery(el).data('blockUI.history', data);
 				data.el = node;
 				data.parent = node.parentNode;
 				data.display = node.style.display;
@@ -594,7 +595,7 @@ jq(document).ready(function($)
 					data.parent.removeChild(node);
 			}
 
-			$(el).data('blockUI.onUnblock', opts.onUnblock);
+			jQuery(el).data('blockUI.onUnblock', opts.onUnblock);
 			var z = opts.baseZ;
 
 			// blockUI uses 3 layers for blocking, for simplicity they are all used on every platform;
@@ -603,14 +604,14 @@ jq(document).ready(function($)
 			// layer3 is the message content that is displayed while blocking
 			var lyr1, lyr2, lyr3, s;
 			if (msie || opts.forceIframe)
-				lyr1 = $('<iframe class="blockUI" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="'+opts.iframeSrc+'"></iframe>');
+				lyr1 = jQuery('<iframe class="blockUI" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="'+opts.iframeSrc+'"></iframe>');
 			else
-				lyr1 = $('<div class="blockUI" style="display:none"></div>');
+				lyr1 = jQuery('<div class="blockUI" style="display:none"></div>');
 
 			if (opts.theme)
-				lyr2 = $('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:'+ (z++) +';display:none"></div>');
+				lyr2 = jQuery('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:'+ (z++) +';display:none"></div>');
 			else
-				lyr2 = $('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
+				lyr2 = jQuery('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
 
 			if (opts.theme && full) {
 				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:'+(z+10)+';display:none;position:fixed">';
@@ -634,7 +635,7 @@ jq(document).ready(function($)
 			else {
 				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement" style="z-index:'+(z+10)+';display:none;position:absolute"></div>';
 			}
-			lyr3 = $(s);
+			lyr3 = jQuery(s);
 
 			// if we have a message, style it
 			if (msg) {
@@ -655,13 +656,13 @@ jq(document).ready(function($)
 			if (msie || opts.forceIframe)
 				lyr1.css('opacity',0.0);
 
-			//$([lyr1[0],lyr2[0],lyr3[0]]).appendTo(full ? 'body' : el);
-			var layers = [lyr1,lyr2,lyr3], $par = full ? $('body') : $(el);
-			$.each(layers, function() {
-				this.appendTo($par);
+			//jQuery([lyr1[0],lyr2[0],lyr3[0]]).appendTo(full ? 'body' : el);
+			var layers = [lyr1,lyr2,lyr3], jQuerypar = full ? jQuery('body') : jQuery(el);
+			jQuery.each(layers, function() {
+				this.appendTo(jQuerypar);
 			});
 
-			if (opts.theme && opts.draggable && $.fn.draggable) {
+			if (opts.theme && opts.draggable && jQuery.fn.draggable) {
 				lyr3.draggable({
 					handle: '.ui-dialog-titlebar',
 					cancel: 'li'
@@ -669,21 +670,21 @@ jq(document).ready(function($)
 			}
 
 			// ie7 must use absolute positioning in quirks mode and to account for activex issues (when scrolling)
-			var expr = setExpr && (!$.support.boxModel || $('object,embed', full ? null : el).length > 0);
+			var expr = setExpr && (!jQuery.support.boxModel || jQuery('object,embed', full ? null : el).length > 0);
 			if (ie6 || expr) {
 				// give body 100% height
-				if (full && opts.allowBodyStretch && $.support.boxModel)
-					$('html,body').css('height','100%');
+				if (full && opts.allowBodyStretch && jQuery.support.boxModel)
+					jQuery('html,body').css('height','100%');
 
 				// fix ie6 issue when blocked element has a border width
-				if ((ie6 || !$.support.boxModel) && !full) {
+				if ((ie6 || !jQuery.support.boxModel) && !full) {
 					var t = sz(el,'borderTopWidth'), l = sz(el,'borderLeftWidth');
 					var fixT = t ? '(0 - '+t+')' : 0;
 					var fixL = l ? '(0 - '+l+')' : 0;
 				}
 
 				// simulate fixed position
-				$.each(layers, function(i,o) {
+				jQuery.each(layers, function(i,o) {
 					var s = o[0].style;
 					s.position = 'absolute';
 					if (i < 2) {
@@ -717,7 +718,7 @@ jq(document).ready(function($)
 				else
 					lyr3.append(msg);
 				if (msg.jquery || msg.nodeType)
-					$(msg).show();
+					jQuery(msg).show();
 			}
 
 			if ((msie || opts.forceIframe) && opts.showOverlay)
@@ -745,7 +746,7 @@ jq(document).ready(function($)
 
 			if (full) {
 				pageBlock = lyr3[0];
-				pageBlockEls = $(opts.focusableElements,pageBlock);
+				pageBlockEls = jQuery(opts.focusableElements,pageBlock);
 				if (opts.focusInput)
 					setTimeout(focus, 20);
 			}
@@ -756,11 +757,11 @@ jq(document).ready(function($)
 				// auto-unblock
 				var to = setTimeout(function() {
 					if (full)
-						$.unblockUI(opts);
+						jQuery.unblockUI(opts);
 					else
-						$(el).unblock(opts);
+						jQuery(el).unblock(opts);
 				}, opts.timeout);
-				$(el).data('blockUI.timeout', to);
+				jQuery(el).data('blockUI.timeout', to);
 			}
 		}
 
@@ -768,26 +769,26 @@ jq(document).ready(function($)
 		function remove(el, opts) {
 			var count;
 			var full = (el == window);
-			var $el = $(el);
-			var data = $el.data('blockUI.history');
-			var to = $el.data('blockUI.timeout');
+			var jQueryel = jQuery(el);
+			var data = jQueryel.data('blockUI.history');
+			var to = jQueryel.data('blockUI.timeout');
 			if (to) {
 				clearTimeout(to);
-				$el.removeData('blockUI.timeout');
+				jQueryel.removeData('blockUI.timeout');
 			}
-			opts = $.extend({}, $.blockUI.defaults, opts || {});
+			opts = jQuery.extend({}, jQuery.blockUI.defaults, opts || {});
 			bind(0, el, opts); // unbind events
 
 			if (opts.onUnblock === null) {
-				opts.onUnblock = $el.data('blockUI.onUnblock');
-				$el.removeData('blockUI.onUnblock');
+				opts.onUnblock = jQueryel.data('blockUI.onUnblock');
+				jQueryel.removeData('blockUI.onUnblock');
 			}
 
 			var els;
 			if (full) // crazy selector to handle odd field errors in ie6/7
-				els = $('body').children().filter('.blockUI').add('body > .blockUI');
+				els = jQuery('body').children().filter('.blockUI').add('body > .blockUI');
 			else
-				els = $el.find('>.blockUI');
+				els = jQueryel.find('>.blockUI');
 
 			// fix cursor issue
 			if ( opts.cursorReset ) {
@@ -813,8 +814,8 @@ jq(document).ready(function($)
 
 		// move blocking element back into the DOM where it started
 		function reset(els,data,opts,el) {
-			var $el = $(el);
-			if ( $el.data('blockUI.isBlocked') )
+			var jQueryel = jQuery(el);
+			if ( jQueryel.data('blockUI.isBlocked') )
 				return;
 
 			els.each(function(i,o) {
@@ -828,31 +829,31 @@ jq(document).ready(function($)
 				data.el.style.position = data.position;
 				if (data.parent)
 					data.parent.appendChild(data.el);
-				$el.removeData('blockUI.history');
+				jQueryel.removeData('blockUI.history');
 			}
 
-			if ($el.data('blockUI.static')) {
-				$el.css('position', 'static'); // #22
+			if (jQueryel.data('blockUI.static')) {
+				jQueryel.css('position', 'static'); // #22
 			}
 
 			if (typeof opts.onUnblock == 'function')
 				opts.onUnblock(el,opts);
 
 			// fix issue in Safari 6 where block artifacts remain until reflow
-			var body = $(document.body), w = body.width(), cssW = body[0].style.width;
+			var body = jQuery(document.body), w = body.width(), cssW = body[0].style.width;
 			body.width(w-1).width(w);
 			body[0].style.width = cssW;
 		}
 
 		// bind/unbind the handler
 		function bind(b, el, opts) {
-			var full = el == window, $el = $(el);
+			var full = el == window, jQueryel = jQuery(el);
 
 			// don't bother unbinding if there is nothing to unbind
-			if (!b && (full && !pageBlock || !full && !$el.data('blockUI.isBlocked')))
+			if (!b && (full && !pageBlock || !full && !jQueryel.data('blockUI.isBlocked')))
 				return;
 
-			$el.data('blockUI.isBlocked', b);
+			jQueryel.data('blockUI.isBlocked', b);
 
 			// don't bind events when overlay is not in use or if bindEvents is false
 			if (!full || !opts.bindEvents || (b && !opts.showOverlay))
@@ -861,13 +862,13 @@ jq(document).ready(function($)
 			// bind anchors and inputs for mouse and key events
 			var events = 'mousedown mouseup keydown keypress keyup touchstart touchend touchmove';
 			if (b)
-				$(document).bind(events, opts, handler);
+				jQuery(document).bind(events, opts, handler);
 			else
-				$(document).unbind(events, handler);
+				jQuery(document).unbind(events, handler);
 
 		// former impl...
-		//		var $e = $('a,:input');
-		//		b ? $e.bind(events, opts, handler) : $e.unbind(events, handler);
+		//		var jQuerye = jQuery('a,:input');
+		//		b ? jQuerye.bind(events, opts, handler) : jQuerye.unbind(events, handler);
 		}
 
 		// event handler to suppress keyboard/mouse events when blocking
@@ -885,7 +886,7 @@ jq(document).ready(function($)
 				}
 			}
 			var opts = e.data;
-			var target = $(e.target);
+			var target = jQuery(e.target);
 			if (target.hasClass('blockOverlay') && opts.onOverlayClick)
 				opts.onOverlayClick();
 
@@ -914,7 +915,7 @@ jq(document).ready(function($)
 		}
 
 		function sz(el, p) {
-			return parseInt($.css(el,p),10)||0;
+			return parseInt(jQuery.css(el,p),10)||0;
 		}
 
 	}
@@ -928,3 +929,4 @@ jq(document).ready(function($)
 	}
 
 })();
+

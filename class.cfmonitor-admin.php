@@ -3,7 +3,7 @@
 /*
  *	Class Name: class.cfmonitor-admin.php
  *	Author: Rene Hermenau
- *  version 1.1
+ *      version 1.7.6
  *	@scince 1.7
  *	Description: Main template class for AdSense Click Fraud Monitoring
 */
@@ -67,7 +67,8 @@ class cfmonitor_table extends WP_List_Table {
         parent::__construct( array(
             'singular'  => 'IP_ADDRESS',     //singular name of the listed records
             'plural'    => 'IP_ADDRESS',    //plural name of the listed records
-            'ajax'      => false        //does this table support ajax?
+            'ajax'      => false,        //does this table support ajax?
+            'screen' => null,
         ) );
         
     }
@@ -344,8 +345,26 @@ class cfmonitor_table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = 20;
+        $per_page = 15;
+        /*
+         * Get the current page
+         */
+        $pagenum = isset( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1;
         
+        /*
+         * get the offset of the limited db request
+         */
+        $offset = ( $pagenum - 1 ) * $per_page;
+        
+        /* 
+         * Get total numbers of table entries
+         */
+        //$total = $wpdb->get_var( "SELECT COUNT('id') FROM {$table_adclick}" );
+        
+        /*
+         * Get number of pages for pagination
+         */
+        //$num_of_pages = ceil( $total / $per_page );
         
         /**
          * REQUIRED. Now we need to define our column headers. This includes a complete
@@ -375,7 +394,6 @@ class cfmonitor_table extends WP_List_Table {
         $this->process_bulk_action();
         
         
-        
         /**
          * Instead of querying a database, we're going to fetch the example data
          * property we created for use in this plugin. This makes this example 
@@ -396,10 +414,20 @@ class cfmonitor_table extends WP_List_Table {
         $sql = "";
         if ($arg1 == 'blocked') {
             $blocked = 'BLOCKED=1';
-            $sql = "select *,max(CLICK_TIMESTAMP) as CLICK_TIMESTAMP from ".$table_adclick." where " . $blocked . " group by IP_ADDRESS order by " . $orderby . " " . $order;
+            $sql = "select *,max(CLICK_TIMESTAMP) as CLICK_TIMESTAMP from ".$table_adclick." where " . $blocked . " group by IP_ADDRESS order by " . $orderby . " " . $order . " LIMIT " . $offset . "," . $per_page;
+            //$sql = "select *,max(CLICK_TIMESTAMP) as CLICK_TIMESTAMP from ".$table_adclick." where " . $blocked . " group by IP_ADDRESS order by " . $orderby . " " . $order;
+            // count results
+            //$total = $wpdb->get_var( "SELECT COUNT('id') FROM {$table_adclick} where IP_ADDRESS ='" . $ip . "' and " . $blocked );
+            $total = $wpdb->get_var("SELECT count(DISTINCT IP_ADDRESS) FROM {$table_adclick} where " . $blocked);
+            //$total = $wpdb->get_var( "SELECT COUNT(IP_ADRESS) FROM {$table_adclick} where " . $blocked);
+            //$total = $total;
+            //$total = 3;
         } else {
             $blocked = 'BLOCKED=1 OR BLOCKED=0';
-            $sql = "select * from ".$table_adclick." where " . $blocked . " order by " . $orderby . " " . $order;
+            $sql = "select * from ".$table_adclick." where " . $blocked . " order by " . $orderby . " " . $order . " LIMIT " . $offset . "," . $per_page;
+               // count results
+               //$total = $wpdb->get_var( "SELECT COUNT('id') FROM {$table_adclick} where IP_ADDRESS ='" . $ip . "' and " . $blocked );
+            $total = $wpdb->get_var( "SELECT COUNT('id') FROM {$table_adclick} where " . $blocked);
         }
         
         $result_qry = $wpdb->get_results($sql);
@@ -413,6 +441,13 @@ class cfmonitor_table extends WP_List_Table {
                 //$blocked = $row->BLOCKED;
                 $query = "select * from " . $table_adclick . " where IP_ADDRESS ='" . $ip . "' and " . $blocked . " order by " . $orderby . " " . $order . "";
                 $results = $wpdb->get_results($query);
+             
+                               /*
+                * Get number of pages for pagination
+                */
+                //$num_of_pages = ceil( $total / $per_page );
+                //$total = $wpdb->get_var( "SELECT COUNT('id') FROM {$table_adclick} where IP_ADDRESS ='" . $ip . "' and " . $blocked );
+                
                 if ($arg1 == 'blocked') {
                 $countresult = count($results);
                 }else {
@@ -428,30 +463,6 @@ class cfmonitor_table extends WP_List_Table {
                 );
             }
         }
-        
-        /*$data = array(
-            array(
-                'ID' => 1,
-                'IP_ADDRESS' => '192.123.12.03',
-                'CLICKCOUNT' => '5',
-                'CLICK_TIMESTAMP' => '23:12:23',
-                'WHOIS' => 'button'
-                ),
-            array(
-                'ID' => 2,
-                'IP_ADDRESS' => '192.123.12.08',
-                'CLICKCOUNT' => '6',
-                'CLICK_TIMESTAMP' => '23:12:23',
-                'WHOIS' => 'button'
-                )
-            );
-         * */
-         
-            
-       
-        //$data = $this->example_data;
-        //$data=$wpdb->get_results($sql, ARRAY_A);
-     
         
         /**
          * modify pagination string
@@ -484,8 +495,8 @@ class cfmonitor_table extends WP_List_Table {
          * looking at. We'll need this later, so you should always include it in 
          * your own package classes.
          */
-        $current_page = $this->get_pagenum();
-        
+        //$current_page = $this->get_pagenum();
+        //$current_page = $pagenum;        
         /**
          * REQUIRED for pagination. Let's check how many items are in our data array. 
          * In real-world use, this would be the total number of items in your database, 
@@ -500,9 +511,7 @@ class cfmonitor_table extends WP_List_Table {
          * to ensure that the data is trimmed to only the current page. We can use
          * array_slice() to 
          */
-        $data = array_slice($data,(($current_page-1)*$per_page),$per_page);
-        
-        
+        //$data = array_slice($data,(($current_page-1)*$per_page),$per_page);
         
         /**
          * REQUIRED. Now we can add our *sorted* data to the items property, where 
@@ -510,14 +519,14 @@ class cfmonitor_table extends WP_List_Table {
          */
         $this->items = $data;
         
-        
         /**
          * REQUIRED. We also have to register our pagination options & calculations.
          */
         $this->set_pagination_args( array(
-            'total_items' => $total_items,                  //WE have to calculate the total number of items
+            'total_items' => $total,                  //WE have to calculate the total number of items
             'per_page'    => $per_page,                     //WE have to determine how many items to show on a page
-            'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
+            //'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
+            'total_pages' => ceil( $total / $per_page )
         ) );
     }
    

@@ -423,8 +423,13 @@ jq(document).ready(function()
 		// override these in your code to change the default behavior and style
 		jQuery.blockUI.defaults = {
 			// message displayed when blocking (use null for no message)
+<<<<<<< .mine
+			//message:  '<h1>Please wait...</h1>',
+                        message: null,
+=======
 			//message:  '<h1>Please wait...</h1>',
 			message: null,
+>>>>>>> .r870707
 
 			title: null,		// title string; only used when theme == true
 			draggable: true,	// only used when theme == true (requires jquery-ui.js to be loaded)

@@ -132,10 +132,10 @@ Be safe, use the ClickFraud Monitor!
 3. Select Plugins->Click fraud monitor 
 
 == Screenshots ==
-1. screenshot-1.png
-2. screenshot-2.png
-3. screenshot-3.png
-3. screenshot-4.png
+1. AdSense 1
+2. AdSense 2
+3. AdSense 3
+3. AdSense 4
 
 == Changelog ==
 = Version 1.7.7 =

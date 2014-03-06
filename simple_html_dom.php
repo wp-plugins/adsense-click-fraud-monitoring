@@ -64,18 +64,53 @@ define('DEFAULT_TARGET_CHARSET', 'UTF-8');
 define('DEFAULT_BR_TEXT', "\r\n");
 define('DEFAULT_SPAN_TEXT', " ");
 define('MAX_FILE_SIZE', 600000);
+define('URL', "");
 // helper functions
 // -----------------------------------------------------------------------------
 // get html dom from file
+// 
 // $maxlen is defined in the code as PHP_STREAM_COPY_ALL which is defined as -1.
-function file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
+
+function retrieve_url_contents($url)
+{
+    // We use curl instead file_get_contents for security purposes
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            return $output;
+}
+
+function clickfraud_get_page_headers($url){
+            //$response = '';
+            /*$ch = curl_init();
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_VERBOSE, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+
+            // Then, after your curl_exec call:
+            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+            $header = substr($response, 0, $header_size);
+             * */
+    
+            $ch = curl_init($url); 
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 1); 
+            $c = curl_exec($ch); 
+            //echo curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            return curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+}
+
+function clickfraud_file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
 {
 	// We DO force the tags to be terminated.
 	$dom = new simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
 	// For sourceforge users: uncomment the next line and comment the retreive_url_contents line 2 lines down if it is not already done.
-	$contents = file_get_contents($url, $use_include_path, $context, $offset);
+	//$contents = file_get_contents($url, $use_include_path, $context, $offset);
 	// Paperg - use our own mechanism for getting the contents as we want to control the timeout.
-	//$contents = retrieve_url_contents($url);
+	$contents = retrieve_url_contents($url);
 	if (empty($contents) || strlen($contents) > MAX_FILE_SIZE)
 	{
 		return false;

@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2013, René Hermenau
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
- * @Version     1.7.6
+ * @Version     1.7.7
  */
 
 // Nothing to do when called directly
@@ -270,12 +270,14 @@ function cfmonitor_conf() {
                                                             <div style="float:clear;">
                                                                     
                                                                     <?php
+                                                                    
+                                                                    
                                                                     // Create DOM from URL or file
                                                                     require_once 'simple_html_dom.php';
                                                                     //$checkurl = 'http://127.0.0.1/dev/hello-world/';
                                                                     $checkurl = (string)get_option('cfmonitor_checkurl');
                                                                     //$html = file_get_html($checkurl);
-                                                                    $html = file_get_html($checkurl);
+                                                                    $html = clickfraud_file_get_html($checkurl);
 
                                                                         // Find all divs with class 
                                                                         //foreach($html->find('cfmonitor') as $element) 
@@ -283,16 +285,19 @@ function cfmonitor_conf() {
                                                                         //echo $element . '<br>';
                                                                      //if (get_option('cfmonitor_checkurl') != 'No URL specified' || get_option('cfmonitor_checkurl') != null){
                                                                     
-                                                                    $headers = get_headers($checkurl, 1);
+                                                                    //$headers = get_headers($checkurl, 1);
+                                                                    $headers = clickfraud_get_page_headers($checkurl);
                                                                     //$matches = "200";
+                                                                    //echo "test" . $headers;
                                                                     
-                                                                    preg_match_all( '/HTTP\/1\.\d (\d{3}) ([\w\d\s+]+)/', $headers[0], $matches );
+                                                                    //preg_match_all( '/HTTP\/1\.\d (\d{3}) ([\w\d\s+]+)/', $headers[0], $matches );
                                                                     //echo "test" . $matches[1][0] . "<br>";
                                                                     //echo $html->find('.' . get_option('cfmonitor_customclass'));
                                                                     //var_dump ($html->find('.' . get_option('cfmonitor_customclass')));
                                                                     //var_dump($matches);
-                                                                    //echo $headers[0];
-                                                                        if ($matches[1][0] == '200') {
+                                                                    //echo $headers;
+                                                                        //if ($matches[1][0] == '200') {
+                                                                    if($headers=='200'){
                                                                             if ($html->find('.' . get_option('cfmonitor_customclass')) != null) {
                                                                                 echo "<h2>Ads have been found on " . get_option('cfmonitor_checkurl') . " <br> It seem that the script is working properly.</h2>";
                                                                          } else {

@@ -30,7 +30,8 @@
 		$this->clickcount = (isset($_POST['count']))?isset($_POST['count']):isset($_GET['count']);
                 //$this->current_url = (isset($_POST['clickurl']))?isset($_POST['clickurl']):isset($_GET['clickurl']);
 		$this->clientfound = $this->checkclient();
-                $this->current_url = $_POST['clickurl'];
+                if (isset($_POST['clickurl']))
+                    $this->current_url = $_POST['clickurl'];
                 
         /* call ajax*/
         if (is_admin()) {

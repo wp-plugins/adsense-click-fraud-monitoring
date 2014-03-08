@@ -273,7 +273,7 @@ function cfmonitor_conf() {
                                                                     
                                                                     
                                                                     // Create DOM from URL or file
-                                                                    require_once 'simple_html_dom.php';
+                                                                    require_once 'cfmonitor_simple_html_dom.php';
                                                                     //$checkurl = 'http://127.0.0.1/dev/hello-world/';
                                                                     $checkurl = (string)get_option('cfmonitor_checkurl');
                                                                     //$html = file_get_html($checkurl);

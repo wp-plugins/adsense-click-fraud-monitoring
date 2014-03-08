@@ -106,7 +106,7 @@ function clickfraud_get_page_headers($url){
 function clickfraud_file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
 {
 	// We DO force the tags to be terminated.
-	$dom = new simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
+	$dom = new cfmonitor_simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
 	// For sourceforge users: uncomment the next line and comment the retreive_url_contents line 2 lines down if it is not already done.
 	//$contents = file_get_contents($url, $use_include_path, $context, $offset);
 	// Paperg - use our own mechanism for getting the contents as we want to control the timeout.
@@ -121,9 +121,9 @@ function clickfraud_file_get_html($url, $use_include_path = false, $context=null
 }
 
 // get html dom from string
-function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
+function clickfraud_str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
 {
-	$dom = new simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
+	$dom = new cfmonitor_simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
 	if (empty($str) || strlen($str) > MAX_FILE_SIZE)
 	{
 		$dom->clear();
@@ -134,7 +134,7 @@ function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_char
 }
 
 // dump html dom tree
-function dump_html_tree($node, $show_attr=true, $deep=0)
+function clickfraud_dump_html_tree($node, $show_attr=true, $deep=0)
 {
 	$node->dump($node);
 }
@@ -147,7 +147,7 @@ function dump_html_tree($node, $show_attr=true, $deep=0)
  *
  * @package PlaceLocalInclude
  */
-class simple_html_dom_node
+class cfmonitor_simple_html_dom_node
 {
 	public $nodetype = HDOM_TYPE_TEXT;
 	public $tag = 'text';
@@ -1019,7 +1019,7 @@ class simple_html_dom_node
  *
  * @package PlaceLocalInclude
  */
-class simple_html_dom
+class cfmonitor_simple_html_dom
 {
 	public $root = null;
 	public $nodes = array();
@@ -1208,7 +1208,7 @@ class simple_html_dom
 		$this->lowercase = $lowercase;
 		$this->default_br_text = $defaultBRText;
 		$this->default_span_text = $defaultSpanText;
-		$this->root = new simple_html_dom_node($this);
+		$this->root = new cfmonitor_simple_html_dom_node($this);
 		$this->root->tag = 'root';
 		$this->root->_[HDOM_INFO_BEGIN] = -1;
 		$this->root->nodetype = HDOM_TYPE_ROOT;
@@ -1225,7 +1225,7 @@ class simple_html_dom
 		}
 
 		// text
-		$node = new simple_html_dom_node($this);
+		$node = new cfmonitor_simple_html_dom_node($this);
 		++$this->cursor;
 		$node->_[HDOM_INFO_TEXT] = $s;
 		$this->link_nodes($node, false);
@@ -1385,7 +1385,7 @@ class simple_html_dom
 			return true;
 		}
 
-		$node = new simple_html_dom_node($this);
+		$node = new cfmonitor_simple_html_dom_node($this);
 		$node->_[HDOM_INFO_BEGIN] = $this->cursor;
 		++$this->cursor;
 		$tag = $this->copy_until($this->token_slash);
@@ -1586,7 +1586,7 @@ class simple_html_dom
 	// as a text node
 	protected function as_text_node($tag)
 	{
-		$node = new simple_html_dom_node($this);
+		$node = new cfmonitor_simple_html_dom_node($this);
 		++$this->cursor;
 		$node->_[HDOM_INFO_TEXT] = '</' . $tag . '>';
 		$this->link_nodes($node, false);
@@ -1765,8 +1765,8 @@ class simple_html_dom
 	function childNodes($idx=-1) {return $this->root->childNodes($idx);}
 	function firstChild() {return $this->root->first_child();}
 	function lastChild() {return $this->root->last_child();}
-	function createElement($name, $value=null) {return @str_get_html("<$name>$value</$name>")->first_child();}
-	function createTextNode($value) {return @end(str_get_html($value)->nodes);}
+	function createElement($name, $value=null) {return @clickfraud_str_get_html("<$name>$value</$name>")->first_child();}
+	function createTextNode($value) {return @end(clickfraud_str_get_html($value)->nodes);}
 	function getElementById($id) {return $this->find("#$id", 0);}
 	function getElementsById($id, $idx=null) {return $this->find("#$id", $idx);}
 	function getElementByTagName($name) {return $this->find($name, 0);}

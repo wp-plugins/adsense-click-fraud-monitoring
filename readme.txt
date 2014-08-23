@@ -1,4 +1,4 @@
-=== AdSense Click-Fraud Monitoring Plugin ===
+=== Google AdSense Anti Click-Fraud Plugin ===
 Contributors: ReneHermi
 Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later
@@ -8,7 +8,7 @@ Requires at least: 3.1+
 Tested up to: 3.9.2
 Stable tag: 1.8.0
 
-AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
+Google AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
 == Description ==
 

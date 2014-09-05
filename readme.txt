@@ -136,12 +136,7 @@ Be safe, use the ClickFraud Monitor!
 3. AdSense 3
 3. AdSense 4
 
-== Changelog ==
-
-= v. 1.8.1 = 
-Fix: Undefined var $_POST['data']
-Fix: wrong arguments for method prepare_table
-New: Checked for WordPress 4.0
+== Changelog ==s
 
 = Version 1.8.0 =
 * Tested up to Wordpress 3.9.2

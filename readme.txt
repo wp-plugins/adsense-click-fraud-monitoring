@@ -1,4 +1,4 @@
-=== AdSense Click-Fraud Monitoring Plugin ===
+=== Google AdSense Click-Fraud Monitoring Plugin ===
 Contributors: ReneHermi
 Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later
@@ -26,6 +26,7 @@ Find out why this plugin is fantastic:
 
 You can purchase an extended version of this plugin with additional features<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+Get 10 Percent discount | Use the Discount Code <strong>10PERCENT</strong> (only for a limited time)
 </p>
 </p>
 Official site for demonstration, docs and support:

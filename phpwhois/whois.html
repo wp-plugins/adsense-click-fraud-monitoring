@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Click-Fraud Monitor - Whois service</title>
+<style type="text/css">
+    body {
+        font-family: arial;
+        color: #232323;
+        size:12px;
+    }
+    .white {
+        color:white;
+    }
+</style>
+</head>
+
+<body>
+    
+<center>
+<img src="../images/logo.png">
+<h1>Click-Fraud Monitor - Whois service</h1>
+
+<table>
+<tr><td style="background-color:#0077cb;">
+<form method="get" action="{self}">
+
+<table>
+<tr><td colspan="3" align="center">
+<b class="white">Enter any domain name, ip address or AS handle you would like to query whois for</b>
+<br/><br/>
+<input name="query" /> <input type="submit" value="Whois" /><br/>
+</td></tr>
+
+<tr>
+<td class="white">
+<input type="radio" name="output" value="normal" class="white"/> Show me regular output<br/>
+<input type="radio" name="output" value="nice" checked="checked" class="white" /> Show me HTMLized output<br/>
+<input type="radio" name="output" value="object" class="white" /> Show me the returned PHP object
+</td>
+
+<td align="left" valign="top" class="white">
+<input type="checkbox" name="fast" value="1" class="white"/> Fast lookup
+</td>
+
+<td align="right" valign="bottom">
+</td>
+</tr>
+
+</table>
+</form>
+</td></tr>
+</table>
+</center>
+    <div style="width:100%;">
+    <div style="width:600px;margin:auto;">
+<!--results-->
+<p><b>Results for {query} :</b></p>
+<blockquote>
+{result}
+</blockquote>
+<!--/results-->
+    </div>
+    </div>
+</body>
+</html>

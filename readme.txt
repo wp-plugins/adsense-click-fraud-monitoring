@@ -1,4 +1,4 @@
-=== AdSense Click-Fraud Monitoring Plugin ===
+=== Google AdSense Click-Fraud Monitoring Plugin ===
 Contributors: ReneHermi
 Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later
@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC, widget
 Requires at least: 3.1+
 Tested up to: 4.0
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 
 Google AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
@@ -26,6 +26,7 @@ Find out why this plugin is fantastic:
 
 You can purchase an extended version of this plugin with additional features<br>
 Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+Get 10 Percent discount | Use the Discount Code <strong>10PERCENT</strong> (only for a limited time)
 </p>
 </p>
 Official site for demonstration, docs and support:
@@ -138,9 +139,17 @@ Be safe, use the ClickFraud Monitor!
 
 == Changelog ==
 
-= v. 1.8.1 = 
+= Version 1.8.1 =
+
+* **Bugfixes**
+        * *Solves a bug where AdSense clicks are not cummulated in the table of blocked IP addresses
+* **Enhancements**
+        * *Improved integration check. 
+
+= Version 1.8.1 = 
+
 Fix: Undefined var $_POST['data']
-Fix: wrong arguments for method prepare_table
+Fix: wrong arguments for method prepare_table which shows the ip from blocked AdSense user
 New: Checked for WordPress 4.0
 
 = Version 1.8.0 =

@@ -136,7 +136,7 @@ Be safe, use the ClickFraud Monitor!
 3. AdSense 3
 3. AdSense 4
 
-== Changelog ==s
+== Changelog ==
 
 = Version 1.8.0 =
 * Tested up to Wordpress 3.9.2

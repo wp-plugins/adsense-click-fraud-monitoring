@@ -1,4 +1,4 @@
-=== Google AdSense Anti Click-Fraud Plugin ===
+=== AdSense Click-Fraud Monitoring Plugin ===
 Contributors: ReneHermi
 Donate link: http://www.demo.clickfraud-monitoring.com
 License: GPLv2 or later

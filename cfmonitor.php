@@ -1,6 +1,6 @@
 <?php
 /*
- *	Plugin Name: Google AdSense Anti Click-Fraud
+ *	Plugin Name: AdSense Click-Fraud Monitoring Plugin
  *	Author: Rene Hermenau
  *  Author URI: https://plus.google.com/u/0/105229046305078704903/posts
  *  Plugin URI: http://www.clickfraud-monitoring.com

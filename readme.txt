@@ -5,8 +5,8 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC, widget
 Requires at least: 3.1+
-Tested up to: 4.0.1
-Stable tag: 1.8.4
+Tested up to: 4.1
+Stable tag: 1.8.5
 
 Google AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
@@ -137,6 +137,9 @@ Be safe, use the ClickFraud Monitor!
 3. AdSense 4
 
 == Changelog ==
+
+= 1.8.5 =
+* Tested up to WP 4.1
 
 = 1.8.4 =
 * Tweak: Tested for WP 4.0.1

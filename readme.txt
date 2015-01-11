@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC, widget
 Requires at least: 3.1+
 Tested up to: 4.1
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 
 Google AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
 
@@ -137,6 +137,11 @@ Be safe, use the ClickFraud Monitor!
 3. AdSense 4
 
 == Changelog ==
+
+= 1.8.6 =
+* Fix: Solves the error 'Call to a member function on a non-object' 
+* New: Modify the function which checks if the class 'cfmonitor' is available on the page
+* New: Add some more documentation how to check if the plugin is working as expected.
 
 = 1.8.5 =
 * Tested up to WP 4.1

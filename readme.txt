@@ -5,55 +5,56 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC, widget
 Requires at least: 3.1+
-Tested up to: 4.1
-Stable tag: 1.8.6
+Tested up to: 4.2
+Stable tag: 1.8.7
 
-Google AdSense Plugin for Google AdSense and other PPC vendors. Prevents to be banned due to malicious clicks on your ads. Increases CPC and your revenue.
+Google AdSense Plugin for Google AdSense. Prevent invalid and malicious clicks. Increase worth & quality of your adsense clicks.
 
 == Description ==
 
-Prevents to be banned and excluded from your AdSense account due to malicious or unintended third party clicks on advertisements on your website.
-Blocks visitor from seeing your ads when they click multiple times on them. Increases your revenue and CPC.
-Find out why this plugin is fantastic:
+This plugin can prevent you from beeing banned and excluded from the AdSense program due to malicious or unintended third party clicks on advertisements on your website.
+It blocks visitor from seeing your ads when they click multiple times on them. This will increase the amount of more relevant and better quality advertisments and so it can help you to grow your revenue.
+
+Find out what this plugin makes so special:
 <br>
 
 <h3> Links </h3>
 
-[DEMO](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo")<br>
-[More Information](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
-
-<h3>Extended Version</h3>
-
-You can purchase an extended version of this plugin with additional features<br>
-Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+[Demo website](http://demo.clickfraud-monitoring.com/ "Adsense Click Fraud Monitor Demo") and
+[documentation](http://www.clickfraud-monitoring.com/ "AdSense Click plugin documentation")
 </p>
-</p>
-Official site for demonstration, docs and support:
-http://www.clickfraud-monitoring.com
 
 This plugin is in active development and will be updated on a regular basis - Please do not rate negative before i tried my best to solve your issue. Thanks buddy!
 
 = Why i need AdSense Click Fraud Monitoring Plugin? =
 
-* Prevent malicious clicks by bots on your Ads
-* Prevent malicious clicks by human user on you Ads
+* Prevent malicious clicks by bots on your advertisments
+* Prevent malicious clicks by human user on you ads
 * Prevent clicks by friends on your Ads who want to “help” you.
 * Prevent unintended clicks by your own
-* New: Blocks a list of specific IP´s including detection of your own IP
-* New: Use custom name for your ad block class
-* New: Blocks a comma separated list of specific IP´s including detection of your own IP
+* Blocks a list of specific IP´s including your own IP
 
-In easy words, e.g. Google AdSense: Google takes care that every click on any AdSense advertising is done by a real human visitor. Automatic clicks by crawl bots or a lot of automated or manual processed clicks (a so-called Clickbomb) can lead to a complete and permanent exclusion from the google AdSense service. All your earnings are lost and it is very hard to get back the access to your account. (In most cases impossible)
-The motivation behind such automatic clicks is very different. Maybe some competitior wants to harm you or a technical leads to multiple clicks by a human user. They all have in common that you as the AdSense account owner are responsible for any click fraud. You recognize unusual clicks when your page CTR is 1 - 3 % averaged and than it jumps up to 5, 10 or even more. 
+<strong>Why you need this:</strong>
+Google takes care that every click on any AdSense advertising is done by a real human visitor. Automatic clicks by crawl bots or a lot of automated or manual processed clicks (a so-called clickbomb) can lead to a complete and permanent exclusion from the google AdSense service. All your earnings are lost and it is very hard to get back the access to your account. (Most often impossible)
 
-This is were the "Click Fraud Monitor" comes in...for prevention!
+<strong>Why are there invalid multiple clicks on my ads? </strong>
+There are several possible reasons. Its possible that a competitior wants to harm you. Another reason could be html errors. For example navigation elements could be covered and overlayed by adsense advertisings. This happens often on mobile devices when some mobile screensizes are not properly tested. 
+So when a user intends to click on this navigation element he rather clicks unintentionally on the ads behind it. This could easily lead to dozens of unintended and invalid clicks.
+Additionally this could also harm your websites reputation for the internal google search algorithms . We do not know how google internally works but it is only an logical assumptions that google could give a website a better reputation when it delivers more quality clicks on ads. 
+
+All this invalid clicks have in common that you as the AdSense account owner are responsible for any click fraud. 
+
+<strong>How can i detect invalid clicks on my advertisings?</strong>
+You recognize unusual clicks very easy when when you compare your usual daily page CTR. For example, if this is a averaged value of 1 - 3 %  and it jumps suddenly one time up to 5, 10 or even more, this could be an indication for a click fraud attack on your website.
+
+This is the perfect situation where "Click Fraud Monitor" can be helpful...for prevention!
 
 = Features =
 
-* Disable your Ads when a user clicks too often on them
-* User will be banned and blocked for further clicks
+* Disable your Ads when a user clicks multiple times on it
+* User is banned and blocked for further clicks
 * Manual unblocking of IP adresses possible
-* Works, even without reloading of your site (jQuery and Ajax)
+* Works without reloading your site
 * Works with every Theme
 * E-Mail notification when a user is blocked (Only Premium)
 * Activating and disabling of all Ads with only one click
@@ -63,9 +64,15 @@ This is were the "Click Fraud Monitor" comes in...for prevention!
 * Service and support by the author
 * Periodic updates and improvements. (Feel free to make your wish)
 
+<h3>Extended Version</h3>
+
+You can purchase an extended version of this plugin with additional features<br>
+Purchase extended [Click-Fraud Monitoring](http://demo.clickfraud-monitoring.com/ "AdSense Click-Fraud Software")
+</p>
+
 = How does it work? =
 
-The Plugin counts all clicks on your Ads. When the clicks exceeds a specified number, the ad will be deactivated and removed from the source code. The clicking user or bot is blocked on a IP basis for further clicks. At the same time the plugin sends you a notification by email. (Only Premium)
+The Plugin counts all clicks on your advertisments. When clicks exceed a specified number, AdSense is disabled and removed from the source code. The user or bot is blocked on a IP basis for further clicks. At the same time the plugin sends you a notification by email. (Only Premium)
  
 = How to install and setup? =
 Install this plugin and wrap your AdSense or other advertising code into a new div with the class "cfmonitor". 
@@ -137,6 +144,10 @@ Be safe, use the ClickFraud Monitor!
 3. AdSense 4
 
 == Changelog ==
+
+= 1.8.7 =
+* Fix: Whois function not working for some country grouped ip addresses
+*
 
 = 1.8.6 =
 * Fix: Solves the error 'Call to a member function on a non-object' 

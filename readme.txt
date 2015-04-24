@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Google AdSense, AdSense, Ad Sense, Ajax, AdSense plugin, Klickbetrug, notification, shortcode, Plugin, links, google, posts, click bomb, clickbomb, admin, ads, advertisement, advertising, akismet, seo, click protection, click protect, clickfraud, click-fraud, PPC, widget
 Requires at least: 3.1+
 Tested up to: 4.2
-Stable tag: 1.8.7
+Stable tag: 1.8.6
 
 Google AdSense Plugin for Google AdSense. Prevent invalid and malicious clicks. Increase worth & quality of your adsense clicks.
 
